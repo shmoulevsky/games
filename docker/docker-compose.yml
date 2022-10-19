@@ -12,7 +12,7 @@ services:
     ports:
       - ${PROJECT_IP}:9100:9000
     depends_on:
-      - db
+      - db_games
     networks:
         - app-network
     environment:
@@ -29,11 +29,11 @@ services:
     ports:
       - ${PROJECT_IP}:9200:9000
     depends_on:
-      - db  
+      - db_games
     networks:
         - app-network
 
-  db:
+  db_games:
       image: mysql:8.0.28
       container_name: ${PROJECT_NAME}_db
       restart: unless-stopped
@@ -52,12 +52,12 @@ services:
           - ./mysql/my.cnf:/etc/mysql/my.cnf
       networks:
           - app-network
-    
+
   phpmyadmin:
       image: phpmyadmin/phpmyadmin
       container_name: ${PROJECT_NAME}_pma
       environment:
-          PMA_HOST: db
+          PMA_HOST: db_games
           PMA_PORT: "3306"
           PMA_ARBITRARY: 1
           UPLOAD_LIMIT: 600M
@@ -65,7 +65,7 @@ services:
       ports:
           - "${PROJECT_IP}:8081:80"
       depends_on:
-          - db
+          - db_games
       networks:
           - app-network
 
@@ -101,16 +101,16 @@ services:
     build:
       context: ./supervisor
     volumes:
-      - ../:/app    
+      - ../:/app
     container_name: ${PROJECT_NAME}-supervisor
     ports:
       - ${PROJECT_IP}:7000:7000
     depends_on:
-      - php-fpm-service  
+      - php-fpm-service
     networks:
         - app-network
 
 networks:
     app-network:
         driver: bridge
-       
+

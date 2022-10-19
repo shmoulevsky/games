@@ -5,19 +5,21 @@
             v-model="field.value"
             type="text"
             class="form-control"
-            placeholder="введите поле"
+            :class="field.er ? 'is-invalid': ''"
+            :placeholder="$t('Input value')"
         />
-        <span v-show="field.er" class="error">{{ field.message }}</span>
+        <span v-show="field.er" class="invalid-feedback">{{ field.message }}</span>
     </div>
     <div class="form-group" v-else-if="field.type === 'textarea'">
         <label for="">{{ field.title }}</label>
         <textarea
             v-model="field.value"
             class="form-control"
+            :class="field.er ? 'is-invalid': ''"
             rows="3"
-            placeholder="введите текст ..."
+            :placeholder="$t('Input value')"
         ></textarea>
-        <span v-show="field.er" class="error">{{ field.message }}</span>
+        <span v-show="field.er" class="invalid-feedback">{{ field.message }}</span>
     </div>
     <div class="form-group" v-else-if="field.type === 'select'">
         <label for="">{{ field.title }}</label>
@@ -34,7 +36,7 @@
                 {{ option.text }}
             </option>
         </select>
-        <span v-show="field.er" class="error">{{ field.message }}</span>
+        <span v-show="field.er" class="invalid-feedback">{{ field.message }}</span>
     </div>
     <div class="form-group" v-else-if="field.type === 'checkbox'">
         <label for="">{{ field.title }}</label>
@@ -51,7 +53,7 @@
             />
             <label class="form-check-label">{{ option.text }}</label>
         </div>
-        <span v-show="field.er" class="error">{{ field.message }}</span>
+        <span v-show="field.er" class="invalid-feedback">{{ field.message }}</span>
     </div>
     <div class="form-group" v-else-if="field.type === 'radio'">
         <label for="">{{ field.title }}</label>
@@ -78,7 +80,7 @@
             >Выберите файл</label
             >
         </div>
-        <span v-show="field.er" class="error">{{ field.message }}</span>
+        <span v-show="field.er" class="invalid-feedback">{{ field.message }}</span>
     </div>
     <div v-else>--n/a type--</div>
 </template>

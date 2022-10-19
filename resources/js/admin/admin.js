@@ -1,6 +1,7 @@
 import axios from "./services/axios";
 import VueAxios from "vue-axios";
 import store from './store';
+import { i18nVue } from 'laravel-vue-i18n'
 
 require('../bootstrap');
 
@@ -14,4 +15,7 @@ createApp(App)
     .use(router)
     .use(VueAxios, axios)
     .use(store)
+    .use(i18nVue, {
+        resolve: (lang) => import(`../../../lang/${lang}.json`)
+    })
     .mount("#admin-app")

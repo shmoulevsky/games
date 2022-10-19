@@ -16,10 +16,10 @@ class RegisterRequest extends BaseFormRequest
             'lastname' => ['required', 'string', 'max:50'],
             'email' => ['required', 'string', 'email', 'max:50', 'unique:users'],
             'password' => ['required', 'string',
-                Password::min(8)
-                ->letters()
-                ->numbers()
-                ->uncompromised()
+                //Password::min(8)
+                //->letters()
+                //->numbers()
+                //->uncompromised()
             ],
             'phone' => ['string', 'nullable', 'max:25', 'unique:users'],
             'agree_my' => ['boolean'],

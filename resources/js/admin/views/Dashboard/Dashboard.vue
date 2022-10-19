@@ -260,7 +260,10 @@
 
 <script>
 export default {
-    name: "Dashboard"
+    name: "Dashboard",
+    mounted() {
+        this.$store.dispatch('setTitle', 'Dashboard');
+    }
 }
 </script>
 

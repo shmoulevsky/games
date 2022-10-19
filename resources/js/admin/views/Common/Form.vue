@@ -38,15 +38,17 @@ export default({
 
             if(this.item.tabs){
                 for (let key in this.item.tabs){
-                    this.fillFields(this.item.tabs[key].fields);
+                    this.fillOptions(this.item.tabs[key].fields);
                 }
             }else{
-                this.fillFields(this.item);
+                this.fillOptions(this.item.fields);
             }
 
             this.id = this.$route.params.id ?? null;
 
             if(!this.id){
+                this.item.title = '';
+                this.$store.dispatch('setTitle', this.item.title_add);
                 return ;
             }
 
@@ -54,16 +56,19 @@ export default({
             DataService.getById(this.id).then(response => {
 
                 let info = response.data.data ?? null;
-
-                for (let key in info) {
-
-                    if(!this.item[key]) continue;
-                    this.item[key].value = info[key];
+                this.item.title = '#' + this.id;
+                this.$store.dispatch('setTitle', this.item.title_edit);
+                if(this.item.tabs){
+                    for (let key in this.item.tabs){
+                        this.fillValues(this.item.tabs[key].fields, info);
+                    }
+                }else{
+                    this.fillValues(this.item.fields, info);
                 }
 
             })
         },
-        fillFields(item){
+        fillOptions(item){
             for (let key in item) {
 
                 if(item[key].getInfo){
@@ -71,6 +76,12 @@ export default({
                     let getInfo = new Function(item[key].getInfo.arguments, item[key].getInfo.body);
                     getInfo(axiosInstance, item[key]);
                 }
+            }
+        },
+        fillValues(item, info){
+            for (let key in info) {
+                if(!item[key]) continue;
+                item[key].value = info[key];
             }
         },
         handleError(errs){

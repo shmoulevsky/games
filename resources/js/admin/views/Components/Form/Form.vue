@@ -1,7 +1,7 @@
 <template>
 	<div class="card card-info">
 		<div class="card-header">
-			<h3 class="card-title">Добавить элемент</h3>
+			<h3 class="card-title">{{item.title}}</h3>
 		</div>
 		<!-- /.card-header -->
 		<!-- form start -->
@@ -19,27 +19,29 @@
                            role="tab">{{tab.title}}
                         </a>
                     </div>
-                    <div v-for="(tab, key) in item.tabs"
-                         :key="'tab-wrap' + key"
-                         :class="tab.active ? 'active show' : ''"
-                         :id="'tab'+key"
-                         class="tab-pane fade"
-                         role="tabpanel"
-                         :aria-labelledby="'tab-list'+key">
-                        <div v-for="(field, key) in tab.fields" :key="key">
-                            <admin-fields :field="field"></admin-fields>
+                    <div class="tab-content text-justify">
+                        <div v-for="(tab, key) in item.tabs"
+                             :key="'tab-wrap' + key"
+                             :class="tab.active ? 'active show' : ''"
+                             :id="'tab'+key"
+                             class="tab-pane fade"
+                             role="tabpanel"
+                             :aria-labelledby="'tab-list'+key">
+                            <div v-for="(field, key) in tab.fields" :key="key">
+                                <admin-fields :field="field"></admin-fields>
+                            </div>
                         </div>
                     </div>
                 </div>
-				<div v-else v-for="(field, key) in item" :key="key">
+				<div v-else v-for="(field, key) in item.fields" :key="key">
 					<admin-fields :field="field"></admin-fields>
 				</div>
 			</div>
 			<!-- /.card-body -->
 			<div class="card-footer">
-				<button type="submit" class="btn btn-info">Сохранить</button>
+				<button type="submit" class="btn btn-info">{{$t('Save')}}</button>
 				<button type="button" @click="goBack" class="btn btn-danger m-lg-3">
-					Отмена
+                    {{$t('Cancel')}}
 				</button>
 			</div>
 			<!-- /.card-footer -->
@@ -63,10 +65,24 @@ export default {
 		filterFields: function () {},
 		sendForm() {
 			let formData = new FormData();
+            let isError = false;
 
-			for (let key in this.item) {
-				formData.append(key, this.item[key].value);
-			}
+            if(this.item.tabs){
+                for (let key in this.item.tabs) {
+                    for (let keyField in this.item.tabs[key].fields) {
+                        formData.append(keyField, this.item.fields[keyField].value);
+                    }
+                }
+            }else{
+                for (let key in this.item.fields) {
+
+                    if(!this.item.fields[key].value){
+                        this.item.fields[key].er = true;
+                    }
+
+                    formData.append(key, this.item.fields[key].value);
+                }
+            }
 
             let url = '/admin/' + this.url;
             let requestType = 'post';

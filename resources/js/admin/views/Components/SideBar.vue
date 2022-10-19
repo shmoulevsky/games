@@ -21,13 +21,13 @@
             </div>
             <div class="sidebar-menu">
                 <ul class="menu">
-                    <li class="sidebar-title">Menu</li>
+                    <li class="sidebar-title">{{ $t('Menu') }}</li>
 
                     <li
                         class="sidebar-item active ">
                         <router-link :to="{ name: 'dashboard'}" class='sidebar-link'>
                             <i class="bi bi-grid-fill"></i>
-                            <span>Dashboard</span>
+                            <span>{{ $t('Dashboard') }}</span>
                         </router-link>
                     </li>
 
@@ -35,19 +35,19 @@
                         class="sidebar-item  has-sub">
                         <a href="#" class='sidebar-link'>
                             <i class="bi bi-person-badge-fill"></i>
-                            <span>Manage</span>
+                            <span>{{ $t('Manage') }}</span>
                         </a>
                         <ul class="submenu ">
                             <li class="submenu-item ">
                                 <router-link :to="{ path : '/admin/common/users'}" class="submenu-item">
-                                    Users
+                                    {{$t('Users')}}
                                 </router-link>
                             </li>
                             <li class="submenu-item ">
-                                <a href="">Subscriptions</a>
+                                <a href="">{{$t('Subscriptions')}}</a>
                             </li>
                             <li class="submenu-item ">
-                                <a href="">Comments</a>
+                                <a href="">{{$t('Comments')}}</a>
                             </li>
                         </ul>
                     </li>
@@ -55,14 +55,14 @@
                         class="sidebar-item  has-sub">
                         <a href="#" class='sidebar-link'>
                             <i class="bi bi-stack"></i>
-                            <span>Content</span>
+                            <span>{{ $t('Content') }}</span>
                         </a>
                         <ul class="submenu ">
                             <li class="submenu-item ">
-                                <a href="">Games</a>
+                                <a href="">{{ $t('Games') }}</a>
                             </li>
                             <li class="submenu-item ">
-                                <a href="">Posts</a>
+                                <a href="">{{$t('Posts')}}</a>
                             </li>
                         </ul>
                     </li>
@@ -71,17 +71,17 @@
                         class="sidebar-item  has-sub">
                         <a href="#" class='sidebar-link'>
                             <i class="bi bi-pen-fill"></i>
-                            <span>Settings</span>
+                            <span>{{ $t('Settings') }}</span>
                         </a>
                         <ul class="submenu ">
                             <li class="submenu-item ">
-                                <a href="">Countries</a>
+                                <a href="">{{ $t('Countries') }}</a>
                             </li>
                             <li class="submenu-item ">
-                                <a href="">Languages</a>
+                                <a href="">{{ $t('Languages') }}</a>
                             </li>
                             <li class="submenu-item ">
-                                <a href="">Main</a>
+                                <a href="">{{ $t('Main') }}</a>
                             </li>
                         </ul>
                     </li>
