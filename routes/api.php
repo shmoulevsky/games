@@ -1,6 +1,9 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\V1\Admin\UserController;
+use App\Http\Controllers\V1\Pub\User\AuthController;
+use App\Http\Controllers\V1\Pub\User\RegisterController;
+use App\Http\Controllers\V1\Pub\User\RestoreController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +17,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('throttle:15,1')->group(function() {
+Route::middleware('throttle:60,1')->group(function() {
     Route::post('login', [AuthController::class, 'login']);
-    Route::post('signup', [AuthController::class, 'register']);
+    Route::get('refresh', [AuthController::class, 'refresh']);
+    Route::post('register', [RegisterController::class, 'register']);
+    Route::post('restore', [RestoreController::class, 'restore']);
 });
 
+Route::group(['prefix' => 'admin', 'middleware' => ['jwt.auth']], function () {
+    Route::resource('users', UserController::class);
+});
 
