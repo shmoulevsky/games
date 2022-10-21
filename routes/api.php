@@ -24,7 +24,7 @@ Route::middleware('throttle:60,1')->group(function() {
     Route::post('restore', [RestoreController::class, 'restore']);
 });
 
-Route::group(['prefix' => 'admin', 'middleware' => ['jwt.auth']], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['jwt.auth' , 'panel']], function () {
     Route::resource('users', UserController::class);
 });
 

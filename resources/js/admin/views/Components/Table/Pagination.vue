@@ -1,5 +1,5 @@
 <template>
-    <nav aria-label="Page navigation example">
+    <nav class="mt-3" aria-label="Page navigation">
     <ul class="pagination">
     <li class="page-item" v-if="pagination.current_page > 1">
         <a class="page-link" href="javascript:void(0)" aria-label="Previous" v-on:click.prevent="changePage(pagination.current_page - 1)">
@@ -22,7 +22,7 @@
       props: {
       pagination: {
           type: Object,
-          required: true
+          //required: true
       },
       offset: {
           type: Number,
@@ -51,8 +51,7 @@
     },
     methods : {
       changePage(page) {
-        this.pagination.current_page = page;
-        this.$emit('paginate');
+        this.$emit('paginate', page);
       }
     }
   }

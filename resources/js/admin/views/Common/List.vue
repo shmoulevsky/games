@@ -2,19 +2,18 @@
 	<div class="card card-primary card-outline">
 		<div class="card-body">
 			<table-admin
-				:route_list="url"
 				route_create_name="common.create"
 				route_edit_name="common.edit"
 				:columns="columns"
 				:items="items.data"
 				:headers="headers"
-                @changeItems="updateItems(items)"
+                @updateItems="getItems"
 			>
 			</table-admin>
 			<vue-pagination
-				:pagination="items"
-				@paginate="getItems()"
-				:offset="offset"
+				:pagination="items.meta ?? {}"
+				@paginate="getItems"
+				:offset="per_page"
 			>
 			</vue-pagination>
 		</div>
@@ -35,6 +34,10 @@ export default {
 			offset: tableConfig[this.$route.params.entity].offset,
 			headers: tableConfig[this.$route.params.entity].headers,
 			columns: tableConfig[this.$route.params.entity].columns,
+			per_page: tableConfig[this.$route.params.entity].per_page,
+			sort: null,
+			dir: null,
+			current_page: 1,
 		};
 	},
 	components: {
@@ -42,10 +45,6 @@ export default {
 		VuePagination,
 	},
     computed : {
-        url(){
-            DataService.url = this.$route.params.entity;
-            return DataService.getListUrl(this.offset)
-        }
     },
 	watch: {
 		"$route.params.entity": function () {
@@ -54,12 +53,24 @@ export default {
 		},
 	},
 	methods: {
-		getItems() {
+		getItems(page, sort, dir) {
 
-			DataService.getList(this.offset, this.items.current_page).then(
+            if (sort) this.sort = sort;
+            if (dir) this.dir = dir;
+
+			DataService.getList(this.per_page, page, this.sort, this.dir, '').then(
 				(response) => {
 					this.setDefault();
 					this.items = response.data ?? [];
+
+                    const url = new URL(window.location.href);
+                    url.searchParams.delete('page');
+                    if(page > 1){
+                        url.searchParams.set('page', page);
+                    }
+
+                    window.history.replaceState(null, null, url); // or pushState
+
 				}
 			);
 		},
@@ -68,9 +79,6 @@ export default {
 			this.headers = tableConfig[this.$route.params.entity].headers;
 			this.columns = tableConfig[this.$route.params.entity].columns;
 		},
-        updateItems(items){
-            this.items = items;
-        }
 	},
 	mounted() {
         this.$store.dispatch('setTitle', this.title);
