@@ -186,6 +186,7 @@ return [
          * Package Service Providers...
          */
         \App\Modules\Utils\Generator\Providers\GeneratorServiceProvider::class,
+        \App\Modules\Utils\Universal\Providers\UniversalServiceProvider::class,
         /*
          * Application Service Providers...
          */

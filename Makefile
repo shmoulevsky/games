@@ -11,7 +11,7 @@ prepare-app: composer-update key-generate jwt-prepare laravel-manager-prepare db
 	@echo -e "Make: ${PROJECT_NAME} is completed. \n"
 
 up: ## Запуск проекта
-	@cd ./docker && docker-compose up --remove-orphans
+	@cd ./docker && docker-compose up
 
 down: ## Остановка проекта
 	@cd ./docker && docker-compose down

@@ -83,6 +83,9 @@
                             <li class="submenu-item ">
                                 <a href="">{{ $t('Main') }}</a>
                             </li>
+                            <li class="submenu-item ">
+                                <a href="/admin/generator/">{{ $t('Generator') }}</a>
+                            </li>
                         </ul>
                     </li>
 

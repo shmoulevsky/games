@@ -1,4 +1,6 @@
 import axios from "axios";
+import router from "../router";
+import store from "../store";
 
 let token = localStorage.getItem('token') ?? null;
 
@@ -14,7 +16,10 @@ let axiosInstance = axios.create({
 axiosInstance.interceptors.response.use(response => response, error => {
 
     //console.log(error.response.status);
-
+    if (error.response.status === 400) {
+        store.state.isAuth = false;
+        router.push('/admin/login')
+    }
     if (error.response.status === 401) {
         return axiosInstance.get('/refresh').then((response) => {
 

@@ -25,16 +25,17 @@ import DataService from "../../services/DataService";
 import TableAdmin from "../Components/Table/TableAdmin";
 import VuePagination from "../Components/Table/Pagination";
 import tableConfig from "../../config/TableConfig";
+import axiosInstance from "../../services/axios";
 
 export default {
 	data() {
 		return {
-			title: tableConfig[this.$route.params.entity].title,
-			items: tableConfig[this.$route.params.entity].items,
-			offset: tableConfig[this.$route.params.entity].offset,
-			headers: tableConfig[this.$route.params.entity].headers,
-			columns: tableConfig[this.$route.params.entity].columns,
-			per_page: tableConfig[this.$route.params.entity].per_page,
+			title: {},
+			items: {},
+			offset: null,
+			headers: {},
+			columns: {},
+			per_page: null,
 			sort: null,
 			dir: null,
 			current_page: 1,
@@ -60,7 +61,7 @@ export default {
 
 			DataService.getList(this.per_page, page, this.sort, this.dir, '').then(
 				(response) => {
-					this.setDefault();
+					//this.setDefault();
 					this.items = response.data ?? [];
 
                     const url = new URL(window.location.href);
@@ -76,14 +77,27 @@ export default {
 		},
 		setDefault() {
 
-			this.headers = tableConfig[this.$route.params.entity].headers;
-			this.columns = tableConfig[this.$route.params.entity].columns;
+            let table = this.$route.params.entity;
+
+            axiosInstance.get('/admin/generator/info/list/' + table).then((response) => {
+                this.title = response.data.list.title ?? [];
+                this.headers = response.data.list.headers ?? [];
+                this.columns = response.data.list.columns ?? [];
+                this.offset = response.data.list.offset ?? [];
+                this.per_page = response.data.list.per_page ?? [];
+
+                this.$store.dispatch('setTitle', this.title);
+
+                this.getItems();
+            })
+
 		},
 	},
 	mounted() {
-        this.$store.dispatch('setTitle', this.title);
+
 		DataService.url = this.$route.params.entity;
-		this.getItems();
+        this.setDefault();
+
 	},
 };
 </script>

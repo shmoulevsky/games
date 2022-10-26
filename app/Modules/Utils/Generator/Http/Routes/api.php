@@ -9,4 +9,5 @@ Route::group(['prefix' => 'api/admin/generator', 'middleware' => ['api','jwt.aut
     Route::post('form-handle', [GeneratorController::class, 'form']);
     Route::get('tables', [TableController::class, 'tables']);
     Route::get('table/{table}', [TableController::class, 'table']);
+    Route::get('info/list/{table}', [TableController::class, 'listSettings']);
 });

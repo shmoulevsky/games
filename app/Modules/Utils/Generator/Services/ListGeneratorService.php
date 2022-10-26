@@ -5,26 +5,27 @@ use stdClass;
 
 class ListGeneratorService
 {
-    public function handle($columns, $needColumns, $tableName, $perPage = 10){
+    public function handle($columns, $tableName, $perPage = 10)
+    {
 
         $data = [
-            "title" => "trans('{$tableName} list')",
+            "title" => "{$tableName} list",
             "per_page" => $perPage,
             "items" => [],
         ];
+
 
         $dir = "desc";
         $isSort = true;
 
         foreach ($columns as $column){
 
-            if(!in_array($column->Field ,$needColumns)) continue;
 
-            $title = str_ireplace('_',' ',ucfirst($column->Field));
-            $data["columns"][] = $column->Field;
+            $title = $column["title"];
+            $data["columns"][] = $column['code'];
             $data["headers"][] = [
-                "title" => "trans('{$title}')",
-                "code" => $column->Field,
+                "title" => $title,
+                "code" => $column['code'],
                 "dir" => $dir,
                 "is_sort" => $isSort,
             ];

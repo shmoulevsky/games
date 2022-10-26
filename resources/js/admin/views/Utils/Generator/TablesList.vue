@@ -46,7 +46,7 @@
                                 :name="column.Field"
                                 :id="column.Field"
                                 :key="column.Field+index"
-                                :value="column.Field"
+                                :value="column.name"
                             >
                             <div class="form-check mt-1">
                                 <input
@@ -55,7 +55,7 @@
                                     :name="column.Field + '-show'"
                                     :id="column.Field + '-show'"
                                     :key="column.Field+index+ '-show'"
-                                    :value="column.Field"
+                                    :value="{'code' : column.Field,'title' : column.name}"
                                     v-model="checkedFields"
                                 >
                                 <label class="form-check-label" :for="column.Field + '-show'">{{$t('is show')}}</label>
@@ -66,8 +66,10 @@
                     </li>
                 </ul>
                 <div class="mt-3">
-                    <button @click="back" class="btn btn-info block">{{$t('Back')}}</button>
+
                     <button @click="save" class="btn btn-primary block">{{$t('Save')}}</button>
+                    <button @click="back" class="btn btn-info block m-lg-3">{{$t('Back')}}</button>
+
                 </div>
 
 
@@ -103,6 +105,13 @@ export default {
         showTable(){
             axiosInstance.get('admin/generator/table/' + this.tableName).then((response) => {
                 this.columns = response.data.columns;
+
+                this.columns.map((item) => {
+                   item.name = item.Field.charAt(0).toUpperCase() + item.Field.slice(1);
+                   item.name = item.name.replace('_',' ');
+                   return  item;
+                });
+
                 this.isFirstStep = false;
             })
         },
@@ -114,11 +123,13 @@ export default {
             };
 
             axiosInstance.post('admin/generator/list-handle', data).then((response) => {
+                this.checkedFields = [];
                 this.isFirstStep = true;
             })
         },
         back(){
-
+            this.checkedFields = [];
+            this.isFirstStep = true;
         }
     }
 }
