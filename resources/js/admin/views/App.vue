@@ -30,7 +30,7 @@ export default {
     components: {SideBar, PageTitle, PageFooter},
     computed: {
         isAuth() {
-            return this.$store.getters.isAuth
+            return this.$store.getters.isAuth;
         }
     },
     data(){
@@ -38,11 +38,11 @@ export default {
         }
     },
     mounted() {
-
+        this.refresh();
     },
     methods : {
         refresh(){
-
+            this.$store.dispatch('refreshToken')
         }
     }
 }

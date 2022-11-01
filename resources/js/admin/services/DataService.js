@@ -20,7 +20,9 @@ class DataService {
     return axiosInstance.get(url);
   }
   getById(id) {
-    return axiosInstance.get("/admin/"+ this.url + "/" + id);
+    return axiosInstance.get("/admin/"+ this.url + "/" + id,{
+        params: {id}
+    });
   }
 }
 

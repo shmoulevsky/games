@@ -1,31 +1,31 @@
 import axiosInstance from "../../services/axios";
 import {trans} from "laravel-vue-i18n";
 
-let users = {
-    title_add : trans('User add'),
-    title_edit : trans('User edit'),
+let games = {
+    title_add : trans('Game add'),
+    title_edit : trans('Game edit'),
     tabs : [
         {
             title : "Common",
             active : true,
             languages : true,
             fields: {
-                name: {
-                    title: 'Имя',
+                title: {
+                    title: 'Title',
                     'type': 'text',
                     value: '',
                     er: false,
                     message: '',
                 },
-                lastname: {
-                    title: 'Фамилия',
+                description: {
+                    title: 'Description',
                     'type': 'text',
                     value: '',
                     er: false,
                     message: '',
                 },
-                message: {
-                    title: 'Фамилия',
+                rules: {
+                    title: 'Rules',
                     'type': 'textarea',
                     value: '',
                     er: false,
@@ -34,18 +34,40 @@ let users = {
             }
         },
         {
-            title : "Info",
+            title : "Settings",
             active : false,
             fields: {
-                email: {
-                    title: 'E-mail',
+                thumb: {
+                    title: 'Thumb',
                     'type': 'text',
                     value: '',
                     er: false,
                     message: ''
                 },
+                game: {
+                    title: 'Game',
+                    'type': 'text',
+                    value: '',
+                    er: false,
+                    message: ''
+                },
+                sort: {
+                    title: 'Sort',
+                    'type': 'text',
+                    value: '',
+                    er: false,
+                    message: ''
+                },
+                is_active: {
+                    title: 'Is active',
+                    'type': 'select',
+                    options : [{text : trans('Yes'),  value : 1}, {text : trans('No'),  value : 0}],
+                    value: '',
+                    er: false,
+                    message: ''
+                },
                 status: {
-                    title: 'Статус',
+                    title: 'Status',
                     'type': 'select',
                     value: '',
                     er: false,
@@ -53,9 +75,9 @@ let users = {
                     options : {},
                     getInfo : {
                         'arguments': 'axios, field',
-                        'body': `return axios.get(\'admin/users/create\').then((response) => {
+                        'body': `return axios.get(\'admin/games/create\').then((response) => {
                                 field.options = response.data.statuses ?? null;
-                                console.log(field.options);
+
                             });`
                     }
                 }
@@ -64,10 +86,4 @@ let users = {
     ],
 }
 
-function getInfo() {
-    return axiosInstance.get('admin/users/create').then((response) => {
-        users.fields.status.options = response.data.statuses ?? null;
-    });
-}
-
-export default users;
+export default games;

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\V1\Admin\GameController;
 use App\Http\Controllers\V1\Admin\UserController;
 use App\Http\Controllers\V1\Pub\User\AuthController;
 use App\Http\Controllers\V1\Pub\User\RegisterController;
@@ -26,5 +27,6 @@ Route::middleware('throttle:60,1')->group(function() {
 
 Route::group(['prefix' => 'admin', 'middleware' => ['jwt.auth' , 'panel']], function () {
     Route::resource('users', UserController::class);
+    Route::resource('games', GameController::class);
 });
 

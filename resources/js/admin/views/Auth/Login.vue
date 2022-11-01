@@ -62,30 +62,7 @@ export default {
 
             form.append('email', this.email);
             form.append('password', this.password);
-
-            AuthService.login(form).then(response => {
-
-                localStorage.setItem('token', response.data.access_token);
-
-                this.$store.commit('setAuth', true);
-                this.$store.commit('setToken', response.data.access_token);
-
-                axiosInstance.defaults.headers.common = { 'Authorization': 'Bearer '+ localStorage.getItem('token')};
-                window.location.href = '/admin/dashboard';
-
-            }).catch(error => {
-                this.isError = true;
-                if(error.response.status === 422) {
-                    $.each(error.response.data.errors, function(key, value) {
-                        if(key === 'email'){
-                            this.emailError = error.response.data.errors.email[0]; //NB: emailError is registered in Vue data
-                        }
-                        if(key === 'password'){
-                            this.passwordError = error.response.data.errors.password[0]; //NB: passwordError is registered in Vue data
-                        }
-                    });
-                }
-            });
+            this.$store.dispatch('login', form)
 
         },
         validateEmail(value) {

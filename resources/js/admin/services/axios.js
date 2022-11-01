@@ -17,8 +17,9 @@ axiosInstance.interceptors.response.use(response => response, error => {
 
     //console.log(error.response.status);
     if (error.response.status === 400) {
-        store.state.isAuth = false;
-        router.push('/admin/login')
+        store.dispatch('logout').then((response) => {
+            router.push('/admin/login')
+        });
     }
     if (error.response.status === 401) {
         return axiosInstance.get('/refresh').then((response) => {

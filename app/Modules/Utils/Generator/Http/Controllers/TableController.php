@@ -30,7 +30,23 @@ class TableController
     public function table(Request $request)
     {
         $columns = $this->tableRepository->getColumns($request->table);
-        return response()->json(['columns' => $columns]);
+
+        $fields = [];
+
+        foreach ($columns as $column){
+            $fields[$column->Field] = [
+                'title' => ucfirst($column->Field),
+                'type' => 'text',
+                'is_choosen' => false,
+                'value' => '',
+                'er' => false,
+                'message' => '',
+                'list' => 1,
+            ];
+
+        }
+
+        return response()->json(['fields' => $fields]);
     }
 
     public function listSettings(Request $request)

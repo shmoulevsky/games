@@ -1,0 +1,37 @@
+<template>
+        <div class="list-group list-group-horizontal-sm mb-1 text-center col-4 mb-3" role="tablist">
+            <a v-for="(tab, key) in tabs"
+               :key="'tab' + tab.code"
+               :class="tab.active ? 'active' : ''"
+               class="list-group-item list-group-item-action"
+               :id="'tab-list'+tab.code"
+               data-bs-toggle="list"
+               :href="'#tab' + tab.code"
+               role="tab">{{tab.title}}
+            </a>
+        </div>
+        <div class="tab-content text-justify">
+            <div v-for="(tab, key) in tabs"
+                 :key="'tab-wrap' + tab.code"
+                 :class="tab.active ? 'active show' : ''"
+                 :id="'tab'+tab.code"
+                 class="tab-pane fade"
+                 role="tabpanel"
+                 :aria-labelledby="'tab-list'+tab.code">
+                <slot name="tabContent" :content="tab"></slot>
+            </div>
+        </div>
+</template>
+
+<script>
+export default {
+    name: "LangTab",
+    props : ["tabs"],
+    mounted() {
+    },
+}
+</script>
+
+<style scoped>
+
+</style>

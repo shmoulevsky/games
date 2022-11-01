@@ -23,6 +23,10 @@ export default({
        return {
            item : {},
            id : {},
+           languages : [
+               {"title" : "Russian", "code" : "ru", "id" : 1},
+               {"title" : "English", "code" : "en", "id" : 2},
+           ]
        }
     },
     computed : {
@@ -38,6 +42,22 @@ export default({
 
             if(this.item.tabs){
                 for (let key in this.item.tabs){
+                    if(this.item.tabs[key].languages === true){
+                        this.item.tabs[key].translations = [];
+                        for (let lang in this.languages){
+
+                            this.item.tabs[key].translations.push({
+                                active : parseInt(lang) === 0,
+                                title : this.languages[lang].title,
+                                id : this.languages[lang].id,
+                                code : this.languages[lang].code,
+                                fields : _.cloneDeep(this.item.tabs[key].fields)
+                            });
+                        }
+
+                        this.item.tabs[key].fields = null;
+                    }
+
                     this.fillOptions(this.item.tabs[key].fields);
                 }
             }else{
@@ -60,7 +80,13 @@ export default({
                 this.$store.dispatch('setTitle', this.item.title_edit);
                 if(this.item.tabs){
                     for (let key in this.item.tabs){
-                        this.fillValues(this.item.tabs[key].fields, info);
+                        if(this.item.tabs[key].languages === true){
+                            for(let trans in this.item.tabs[key].translations){
+                                this.fillValues(this.item.tabs[key].translations[trans].fields, info);
+                            }
+                        }else{
+                            this.fillValues(this.item.tabs[key].fields, info);
+                        }
                     }
                 }else{
                     this.fillValues(this.item.fields, info);

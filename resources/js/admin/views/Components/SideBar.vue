@@ -84,7 +84,10 @@
                                 <a href="">{{ $t('Main') }}</a>
                             </li>
                             <li class="submenu-item ">
-                                <a href="/admin/generator/">{{ $t('Generator') }}</a>
+                                <a href="/admin/generator/list">{{ $t('Generator list') }}</a>
+                            </li>
+                            <li class="submenu-item ">
+                                <a href="/admin/generator/forms">{{ $t('Generator forms') }}</a>
                             </li>
                         </ul>
                     </li>

@@ -2,6 +2,7 @@ import Dashboard from "../views/Dashboard/Dashboard";
 import Login from "../views/Auth/Login";
 import commonRoutes from "./common";
 import TablesList from "../views/Utils/Generator/TablesList";
+import Forms from "../views/Utils/Generator/Forms";
 
 const baseRoutes = [
     {
@@ -15,9 +16,14 @@ const baseRoutes = [
         component: Dashboard,
     },
     {
-        path: '/admin/generator',
-        name: 'generator',
+        path: '/admin/generator/list',
+        name: 'generator-list',
         component: TablesList,
+    },
+    {
+        path: '/admin/generator/forms',
+        name: 'generator-forms',
+        component: Forms,
     }
 ];
 

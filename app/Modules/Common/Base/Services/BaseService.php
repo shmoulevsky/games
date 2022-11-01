@@ -5,6 +5,9 @@ namespace App\Modules\Common\Base\Services;
 
 abstract class BaseService
 {
+    protected const DEFAULT_SORT = 100;
+    protected const DEFAULT_ACTIVE = 1;
+
     protected $modelClass;
     protected $repositoryClass;
     public $repository;
