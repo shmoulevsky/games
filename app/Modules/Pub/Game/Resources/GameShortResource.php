@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Game\Resources;
+namespace App\Modules\Pub\Game\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -10,7 +10,10 @@ class GameShortResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'translations' => $this->translations(),
+            'title' => $this->title,
+            'thumb' => $this->thumb,
+            'description' => $this->description,
+            'date' => $this->date,
         ];
     }
 }

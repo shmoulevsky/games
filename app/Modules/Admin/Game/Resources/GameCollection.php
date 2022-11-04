@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Game\Resources;
+namespace App\Modules\Admin\Game\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 

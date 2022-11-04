@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Modules\Game\Repositories;
+namespace App\Modules\Admin\Game\Repositories;
 
+use App\Modules\Admin\Game\Models\GameTranslation;
 use App\Modules\Common\Base\Repositories\BaseRepository;
-use App\Modules\Game\Models\GameTranslation;
 
 class GameTranslationRepository extends BaseRepository
 {

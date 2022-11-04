@@ -17777,7 +17777,13 @@ __webpack_require__.r(__webpack_exports__);
     FooterWrap: _Components_Footer_FooterWrap__WEBPACK_IMPORTED_MODULE_0__["default"],
     HeaderWrap: _Components_Header_HeaderWrap__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  created: function created() {}
+  created: function created() {},
+  mounted: function mounted() {
+    var _this = this;
+    axios.get('https://api.coindesk.com/v1/bpi/currentprice.json').then(function (response) {
+      return _this.info = response;
+    });
+  }
 });
 
 /***/ }),
@@ -17920,8 +17926,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _services_DataService__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../services/DataService */ "./resources/js/public/services/DataService.js");
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "GamesList"
+  name: "GamesList",
+  data: function data() {
+    return {
+      games: {}
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+    _services_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].getList('games', 10, 1, 'id', 'desc').then(function (response) {
+      _this.games = response.data;
+    });
+  }
 });
 
 /***/ }),
@@ -18376,6 +18395,62 @@ var routes = [{
 
 /***/ }),
 
+/***/ "./resources/js/public/services/DataService.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/public/services/DataService.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./axios */ "./resources/js/public/services/axios.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+var DataService = /*#__PURE__*/function () {
+  function DataService() {
+    _classCallCheck(this, DataService);
+  }
+  _createClass(DataService, [{
+    key: "getList",
+    value: function getList(url) {
+      var count = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 10;
+      var page = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
+      var sort = arguments.length > 3 ? arguments[3] : undefined;
+      var dir = arguments.length > 4 ? arguments[4] : undefined;
+      var filter = arguments.length > 5 ? arguments[5] : undefined;
+      url = url + '?count=' + count + '&page=' + page;
+      if (sort) {
+        url += '&sort=' + sort;
+      }
+      if (dir) {
+        url += '&dir=' + dir;
+      }
+      if (filter) {
+        url += '&filter=' + filter;
+      }
+      return _axios__WEBPACK_IMPORTED_MODULE_0__["default"].get(url);
+    }
+  }, {
+    key: "getById",
+    value: function getById(id, url) {
+      return _axios__WEBPACK_IMPORTED_MODULE_0__["default"].get(url + "/" + id, {
+        params: {
+          id: id
+        }
+      });
+    }
+  }]);
+  return DataService;
+}();
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new DataService());
+
+/***/ }),
+
 /***/ "./resources/js/public/services/axios.js":
 /*!***********************************************!*\
   !*** ./resources/js/public/services/axios.js ***!
@@ -18402,6 +18477,7 @@ var axiosInstance = axios__WEBPACK_IMPORTED_MODULE_0__["default"].create({
   headers: {
     "Content-Type": "application/json",
     "Accept": "application/json",
+    "language": 1,
     "Authorization": 'Bearer ' + token
   }
 });
@@ -18410,7 +18486,7 @@ axiosInstance.interceptors.response.use(function (response) {
 }, function (error) {
   if (error.response.status === 400) {
     _store__WEBPACK_IMPORTED_MODULE_2__["default"].dispatch('logout').then(function (response) {
-      _router__WEBPACK_IMPORTED_MODULE_1__["default"].push('/admin/login');
+      _router__WEBPACK_IMPORTED_MODULE_1__["default"].push('/login');
     });
   }
   if (error.response.status === 401) {
@@ -18456,6 +18532,7 @@ var vuexLocal = new vuex_persist__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,vuex__WEBPACK_IMPORTED_MODULE_2__.createStore)({
   state: {
     token: null,
+    language: null,
     isAuth: null
   },
   getters: {
@@ -18464,6 +18541,9 @@ var vuexLocal = new vuex_persist__WEBPACK_IMPORTED_MODULE_1__["default"]({
     },
     getToken: function getToken(state) {
       return state.token;
+    },
+    getLanguage: function getLanguage(state) {
+      return state.language;
     }
   },
   mutations: {
@@ -18472,6 +18552,9 @@ var vuexLocal = new vuex_persist__WEBPACK_IMPORTED_MODULE_1__["default"]({
     },
     setToken: function setToken(state, token) {
       state.token = token;
+    },
+    setLanguage: function setLanguage(state, token) {
+      state.language = token;
     }
   },
   actions: {

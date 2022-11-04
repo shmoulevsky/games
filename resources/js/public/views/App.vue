@@ -14,10 +14,15 @@
 import FooterWrap from "./Components/Footer/FooterWrap";
 import HeaderWrap from "./Components/Header/HeaderWrap";
 
+
 export default {
     components: {FooterWrap, HeaderWrap},
     created() {
 
+    },
+    mounted () {
+        axios.get('https://api.coindesk.com/v1/bpi/currentprice.json')
+            .then(response => (this.info = response))
     }
 }
 </script>

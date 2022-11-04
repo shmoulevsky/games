@@ -4,13 +4,13 @@ namespace App\Http\Controllers\V1\Admin;
 
 
 use App\Http\Controllers\V1\Common\BaseController;
-use App\Modules\Game\Repositories\GameRepository;
-use App\Modules\Game\Requests\GameDeleteRequest;
-use App\Modules\Game\Requests\GameStoreRequest;
-use App\Modules\Game\Requests\GameUpdateRequest;
-use App\Modules\Game\Resources\GameCollection;
-use App\Modules\Game\Resources\GameResource;
-use App\Modules\Game\Services\GameService;
+use App\Modules\Admin\Game\Repositories\GameRepository;
+use App\Modules\Admin\Game\Requests\GameDeleteRequest;
+use App\Modules\Admin\Game\Requests\GameStoreRequest;
+use App\Modules\Admin\Game\Requests\GameUpdateRequest;
+use App\Modules\Admin\Game\Resources\GameCollection;
+use App\Modules\Admin\Game\Resources\GameResource;
+use App\Modules\Admin\Game\Services\GameService;
 
 class GameController extends BaseController
 {

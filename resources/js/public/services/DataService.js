@@ -1,9 +1,9 @@
 import axiosInstance from "./axios";
 
 class DataService {
-  getList(count = 10, page = 1, sort , dir, filter) {
+  getList(url, count = 10, page = 1, sort , dir, filter) {
 
-      let url = "/admin/" + this.url + '?count=' + count + '&page=' + page;
+      url = url + '?count=' + count + '&page=' + page;
 
       if(sort){
           url += '&sort=' + sort;
@@ -19,8 +19,8 @@ class DataService {
 
     return axiosInstance.get(url);
   }
-  getById(id) {
-    return axiosInstance.get("/admin/"+ this.url + "/" + id,{
+  getById(id, url) {
+    return axiosInstance.get(url + "/" + id,{
         params: {id}
     });
   }

@@ -9,6 +9,7 @@ let axiosInstance = axios.create({
     headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
+        "language": 1,
         "Authorization": 'Bearer '+ token
     },
 });
@@ -18,7 +19,7 @@ axiosInstance.interceptors.response.use(response => response, error => {
 
     if (error.response.status === 400) {
         store.dispatch('logout').then((response) => {
-            router.push('/admin/login')
+            router.push('/login')
         });
     }
     if (error.response.status === 401) {

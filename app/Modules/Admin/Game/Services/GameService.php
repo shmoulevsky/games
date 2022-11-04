@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Modules\Game\Services;
+namespace App\Modules\Admin\Game\Services;
 
+use App\Modules\Admin\Game\Models\Game;
+use App\Modules\Admin\Game\Models\GameTranslation;
+use App\Modules\Admin\Game\Repositories\GameRepository;
+use App\Modules\Admin\Game\Repositories\GameTranslationRepository;
 use App\Modules\Common\Base\Services\BaseTranslationService;
-use App\Modules\Game\Models\Game;
-use App\Modules\Game\Models\GameTranslation;
-use App\Modules\Game\Repositories\GameRepository;
-use App\Modules\Game\Repositories\GameTranslationRepository;
 use Illuminate\Support\Facades\DB;
 
 class GameService extends BaseTranslationService

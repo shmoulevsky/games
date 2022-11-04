@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Game\Requests;
+namespace App\Modules\Admin\Game\Requests;
 
 use Illuminate\Http\Request;
 

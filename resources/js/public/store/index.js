@@ -10,7 +10,9 @@ const vuexLocal = new VuexPersistence({
 export default createStore({
     state : {
         token: null,
-        isAuth: null
+        language: null,
+        isAuth: null,
+
     },
     getters: {
         isAuth(state) {
@@ -18,6 +20,9 @@ export default createStore({
         },
         getToken(state) {
             return state.token;
+        },
+        getLanguage(state) {
+            return state.language;
         }
     },
     mutations: {
@@ -26,6 +31,9 @@ export default createStore({
         },
         setToken(state, token) {
             state.token = token;
+        },
+        setLanguage(state, token) {
+            state.language = token;
         }
     },
     actions: {

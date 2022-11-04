@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Storage;
 
 class LanguageService
 {
-    private const DEFAULT_LANGUAGE = 'ru_RU';
+    private const DEFAULT_LANGUAGE = 1;
 
     public static function getCurrent()
     {
