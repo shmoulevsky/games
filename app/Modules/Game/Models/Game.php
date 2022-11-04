@@ -11,7 +11,7 @@ class Game extends Model
 
     public function translations()
     {
-        return $this->hasMany(GameTranslation::class, 'id', 'game_id');
+        return $this->hasMany(GameTranslation::class, 'game_id', 'id');
     }
 
 }

@@ -10,7 +10,10 @@ class GameResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'translations' => $this->translations()->keyBy('id'),
+            'sort' => $this->sort,
+            'is_active' => $this->is_active,
+            'game' => $this->game,
+            'translations' => $this->translations->keyBy('language_id'),
         ];
     }
 }

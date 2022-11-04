@@ -20777,7 +20777,6 @@ var axiosInstance = axios__WEBPACK_IMPORTED_MODULE_0__["default"].create({
 axiosInstance.interceptors.response.use(function (response) {
   return response;
 }, function (error) {
-  //console.log(error.response.status);
   if (error.response.status === 400) {
     _store__WEBPACK_IMPORTED_MODULE_2__["default"].dispatch('logout').then(function (response) {
       _router__WEBPACK_IMPORTED_MODULE_1__["default"].push('/admin/login');

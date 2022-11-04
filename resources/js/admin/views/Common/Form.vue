@@ -78,6 +78,7 @@ export default({
                 let info = response.data.data ?? null;
                 this.item.title = '#' + this.id;
                 this.$store.dispatch('setTitle', this.item.title_edit);
+
                 if(this.item.tabs){
                     for (let key in this.item.tabs){
                         if(this.item.tabs[key].languages === true){

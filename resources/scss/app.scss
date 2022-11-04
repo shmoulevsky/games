@@ -1,0 +1,43 @@
+$main-color: #02f4be;
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    box-sizing: border-box;
+}
+
+h1{
+    font-size: 24px;
+    margin-bottom: 32px;
+}
+
+.content-wrap{
+    width: 1300px;
+    margin: 0px auto;
+    padding: 0px 20px;
+}
+
+.main.content-wrap{
+    padding: 0px 20px;
+    box-sizing: border-box;
+}
+
+.flex{
+    display: flex;
+}
+
+.space-around{
+    justify-content: space-around;
+}
+
+.space-between{
+    justify-content: space-between;
+}
+
+.align-items-center{
+    align-items: center;
+}
+

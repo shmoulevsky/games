@@ -10,7 +10,7 @@ class GameShortResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'translations' => $this->translations,
+            'translations' => $this->translations(),
         ];
     }
 }
