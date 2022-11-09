@@ -21,23 +21,19 @@
 </template>
 
 <script>
-import DataService from "../../services/DataService";
 import TagList from "../Components/Page/TagList";
 
 export default {
     name: "GameCategory",
     components: {TagList},
+    props : ["params"],
     data(){
         return {
             games : {}
         }
     },
     mounted() {
-        DataService.getList('games', 10, 1, 'id', 'desc').then(
-            (response) => {
-                this.games = response.data.data;
-            }
-        )
+        this.games = this.params.data.list.data;
     }
 }
 </script>

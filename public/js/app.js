@@ -18102,25 +18102,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _services_DataService__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../services/DataService */ "./resources/js/public/services/DataService.js");
-/* harmony import */ var _Components_Page_TagList__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Components/Page/TagList */ "./resources/js/public/views/Components/Page/TagList.vue");
-
+/* harmony import */ var _Components_Page_TagList__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Components/Page/TagList */ "./resources/js/public/views/Components/Page/TagList.vue");
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "GameCategory",
   components: {
-    TagList: _Components_Page_TagList__WEBPACK_IMPORTED_MODULE_1__["default"]
+    TagList: _Components_Page_TagList__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
+  props: ["params"],
   data: function data() {
     return {
       games: {}
     };
   },
   mounted: function mounted() {
-    var _this = this;
-    _services_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].getList('games', 10, 1, 'id', 'desc').then(function (response) {
-      _this.games = response.data.data;
-    });
+    this.games = this.params.data.list.data;
   }
 });
 
@@ -18223,7 +18219,8 @@ __webpack_require__.r(__webpack_exports__);
   name: "ComponentFactory",
   data: function data() {
     return {
-      name: null
+      name: null,
+      params: null
     };
   },
   components: {
@@ -18235,28 +18232,32 @@ __webpack_require__.r(__webpack_exports__);
     ArticleCategory: _Article_ArticleCategory__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   mounted: function mounted() {
-    _services_UrlService__WEBPACK_IMPORTED_MODULE_6__["default"].getByUrl(this.$route.query.page).then(function (response) {});
-    var type = 'page';
-    switch (type) {
-      case 'game_category':
-        this.name = 'GameCategory';
-        break;
-      case 'game':
-        this.name = 'Game';
-        break;
-      case 'page_category':
-        this.name = 'PageCategory';
-        break;
-      case 'page':
-        this.name = 'Page';
-        break;
-      case 'article_category':
-        this.name = 'ArticleCategory';
-        break;
-      case 'article':
-        this.name = 'Article';
-        break;
-    }
+    var _this = this;
+    console.log(window.location.pathname);
+    _services_UrlService__WEBPACK_IMPORTED_MODULE_6__["default"].getByUrl(window.location.pathname).then(function (response) {
+      var type = response.data.type;
+      _this.params = response;
+      switch (type) {
+        case 'game_category':
+          _this.name = 'GameCategory';
+          break;
+        case 'game':
+          _this.name = 'Game';
+          break;
+        case 'page_category':
+          _this.name = 'PageCategory';
+          break;
+        case 'page':
+          _this.name = 'Page';
+          break;
+        case 'article_category':
+          _this.name = 'ArticleCategory';
+          break;
+        case 'article':
+          _this.name = 'Article';
+          break;
+      }
+    });
   }
 });
 
@@ -18845,7 +18846,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)((0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveDynamicComponent)($data.name));
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)((0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveDynamicComponent)($data.name), {
+    params: $data.params
+  }, null, 8 /* PROPS */, ["params"]);
 }
 
 /***/ }),
@@ -19016,62 +19019,6 @@ var AppInfoService = /*#__PURE__*/function () {
   return AppInfoService;
 }();
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new AppInfoService());
-
-/***/ }),
-
-/***/ "./resources/js/public/services/DataService.js":
-/*!*****************************************************!*\
-  !*** ./resources/js/public/services/DataService.js ***!
-  \*****************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./axios */ "./resources/js/public/services/axios.js");
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-
-var DataService = /*#__PURE__*/function () {
-  function DataService() {
-    _classCallCheck(this, DataService);
-  }
-  _createClass(DataService, [{
-    key: "getList",
-    value: function getList(url) {
-      var count = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 10;
-      var page = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
-      var sort = arguments.length > 3 ? arguments[3] : undefined;
-      var dir = arguments.length > 4 ? arguments[4] : undefined;
-      var filter = arguments.length > 5 ? arguments[5] : undefined;
-      url = url + '?count=' + count + '&page=' + page;
-      if (sort) {
-        url += '&sort=' + sort;
-      }
-      if (dir) {
-        url += '&dir=' + dir;
-      }
-      if (filter) {
-        url += '&filter=' + filter;
-      }
-      return _axios__WEBPACK_IMPORTED_MODULE_0__["default"].get(url);
-    }
-  }, {
-    key: "getById",
-    value: function getById(id, url) {
-      return _axios__WEBPACK_IMPORTED_MODULE_0__["default"].get(url + "/" + id, {
-        params: {
-          id: id
-        }
-      });
-    }
-  }]);
-  return DataService;
-}();
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new DataService());
 
 /***/ }),
 

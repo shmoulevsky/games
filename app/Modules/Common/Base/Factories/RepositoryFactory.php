@@ -4,10 +4,10 @@ namespace App\Modules\Common\Base\Factories;
 
 use App\Modules\Admin\Article\Repositories\ArticleCategoryRepository;
 use App\Modules\Admin\Article\Repositories\ArticleRepository;
-use App\Modules\Admin\Game\Repositories\GameCategoryRepository;
 use App\Modules\Admin\Page\Repositories\PageCategoryRepository;
 use App\Modules\Admin\Page\Repositories\PageRepository;
 use App\Modules\Common\Url\Models\Url;
+use App\Modules\Pub\Game\Repositories\GameCategoryRepository;
 use App\Modules\Pub\Game\Repositories\GameRepository;
 
 class RepositoryFactory

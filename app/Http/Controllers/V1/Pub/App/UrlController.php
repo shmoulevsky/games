@@ -25,10 +25,10 @@ class UrlController
 
     public function index(Request $request)
     {
-
+        $url = urldecode($request->url);
         $params = ParamListDTO::fromRequest($request, 'created_at', 'desc');
 
-        $url = $this->urlRepository->getByUrl($request->url);
+        $url = $this->urlRepository->getByUrl($url);
         $repository = RepositoryFactory::make($url->entity);
 
         $page = $repository->getPage($url->id);
@@ -36,7 +36,8 @@ class UrlController
         $code = 200;
 
         if($url->is_list){
-            $repositoryList = RepositoryFactory::make($url->list);
+            $type = json_decode($url->list, true);
+            $repositoryList = RepositoryFactory::make($type[0]);
             $list = $repositoryList->getPageList(
                 $params->getSort(),
                 $params->getDir(),
@@ -46,6 +47,8 @@ class UrlController
         }
 
         return response()->json([
+            'id' => $url->id,
+            'type' => $url->entity,
             'page' => $page,
             'list' => $list,
         ], $code);

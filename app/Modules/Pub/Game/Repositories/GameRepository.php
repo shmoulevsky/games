@@ -11,7 +11,7 @@ class GameRepository extends BaseRepository
 {
     protected $modelClass = Game::class;
 
-    public function all(
+    public function getPageList(
         string $column = 'id',
         string $dir = 'desc',
         array $filter = [],
@@ -36,10 +36,14 @@ class GameRepository extends BaseRepository
             })
             ->where('is_active', 1);
 
+        if($column === 'created_at'){
+            $column = 'games.'.$column;
+        }
+
         return $builder->orderBy($column, $dir)->paginate($count);
     }
 
-    public function getByCode($code)
+    public function getPage($code)
     {
         $builder = $this->model
             ->select(
