@@ -13,6 +13,7 @@ class GameResource extends JsonResource
             'title' => $this->title,
             'thumb' => $this->thumb,
             'description' => $this->description,
+            'rules' => $this->rules,
             'game' => $this->game,
             'date' => $this->date,
         ];

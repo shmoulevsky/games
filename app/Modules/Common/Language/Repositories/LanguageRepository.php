@@ -3,12 +3,12 @@
 namespace App\Modules\Common\Language\Repositories;
 
 use App\Modules\Common\Base\Repositories\BaseRepository;
-use Illuminate\Support\Facades\DB;
+use App\Modules\Common\Language\Models\Language;
 
 
 class LanguageRepository extends BaseRepository
 {
-    protected $modelClass = Languages::class;
+    protected $modelClass = Language::class;
 
     public function getIdByCodes(array $codes)
     {
@@ -18,21 +18,10 @@ class LanguageRepository extends BaseRepository
             ->get();
     }
 
-    public function getByCountry(int $countryId)
+    public function getAll()
     {
-        return DB::table('languages')->select('code')
-            ->whereIn('id', function ($query) use ($countryId){
-           $query->from('countries_languages')
-               ->select('language_id')
-               ->where('country_id', $countryId);
-        })->pluck('code')->toArray();
-    }
-
-    public function getDefault(int $countryId)
-    {
-        return DB::table('countries')
-            ->select('default_language')
-            ->where('id', $countryId)
-            ->first('default_language');
+        return $this->model
+            ->select('id', 'code', 'name')
+            ->get();
     }
 }

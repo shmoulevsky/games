@@ -21,8 +21,7 @@ class CreateCountriesTable extends Migration
             $table->string('iso','10');
             $table->integer('sort');
             $table->boolean('is_active');
-            $table->string('default_language','6');
-            $table->integer('currency_id');
+            $table->integer('default_language');
             $table->json('info')->nullable();
         });
     }

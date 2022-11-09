@@ -1,11 +1,11 @@
 <template>
-    <header>
-        <div class="content-wrap flex space-between align-items-center">
-            <logo></logo>
-            <auth-menu></auth-menu>
-        </div>
+    <header class="flex space-between align-items-center">
+        <logo></logo>
+        <top-menu></top-menu>
+        <language-select></language-select>
+        <auth-menu></auth-menu>
     </header>
-    <top-menu></top-menu>
+
 </template>
 
 <script>
@@ -13,10 +13,11 @@
 import AuthMenu from "./AuthMenu";
 import Logo from "./Logo";
 import TopMenu from "./TopMenu";
+import LanguageSelect from "./LanguageSelect";
 
 export default {
     name: "HeaderWrap",
-    components: {Logo, TopMenu, AuthMenu}
+    components: {Logo, TopMenu, AuthMenu, LanguageSelect}
 }
 </script>
 

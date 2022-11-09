@@ -3,19 +3,19 @@ import router from "../router";
 import store from "../store";
 
 let token = localStorage.getItem('token') ?? null;
+let language = store.getters.getLanguage ?? 1;
 
 let axiosInstance = axios.create({
     baseURL: process.env.API_URL || 'http://games.ru/api',
     headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
-        "language": 1,
+        "language": language,
         "Authorization": 'Bearer '+ token
     },
 });
 
 axiosInstance.interceptors.response.use(response => response, error => {
-
 
     if (error.response.status === 400) {
         store.dispatch('logout').then((response) => {

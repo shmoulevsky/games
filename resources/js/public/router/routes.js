@@ -1,7 +1,6 @@
 import Home from "../views/Home";
 import Login from "../views/Login";
-import GamesList from "../views/Games/GamesList";
-import GameDetail from "../views/Games/GameDetail";
+import ComponentFactory from "../views/Universal/ComponentFactory";
 
 const routes = [
     {
@@ -15,24 +14,8 @@ const routes = [
         component: Home,
     },
     {
-        path: '/games',
-        name: 'games',
-        component: GamesList,
-    },
-    {
-        path: '/games/:category',
-        name: 'games-category',
-        component: GamesList,
-    },
-    {
-        path: '/games/:category/:name',
-        name: 'game-detail',
-        component: GameDetail,
-    },
-    {
-        path: '/contacts',
-        name: 'contacts',
-        component: GameDetail,
+        path: '/:catchAll(.*)',
+        component: ComponentFactory,
     }
 ];
 

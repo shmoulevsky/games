@@ -1,0 +1,54 @@
+<?php
+
+namespace App\Http\Controllers\V1\Pub\App;
+
+use App\Modules\Common\Base\DTO\ParamListDTO;
+use App\Modules\Common\Base\Factories\RepositoryFactory;
+use App\Modules\Common\Language\Repositories\LanguageRepository;
+use App\Modules\Common\Url\Repositories\UrlRepository;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+
+class UrlController
+{
+    private LanguageRepository $languageRepository;
+    private UrlRepository $urlRepository;
+
+    public function __construct(
+        LanguageRepository $languageRepository,
+        UrlRepository $urlRepository
+    )
+    {
+        $this->languageRepository = $languageRepository;
+        $this->urlRepository = $urlRepository;
+    }
+
+    public function index(Request $request)
+    {
+
+        $params = ParamListDTO::fromRequest($request, 'created_at', 'desc');
+
+        $url = $this->urlRepository->getByUrl($request->url);
+        $repository = RepositoryFactory::make($url->entity);
+
+        $page = $repository->getPage($url->id);
+        $list = [];
+        $code = 200;
+
+        if($url->is_list){
+            $repositoryList = RepositoryFactory::make($url->list);
+            $list = $repositoryList->getPageList(
+                $params->getSort(),
+                $params->getDir(),
+                $params->getFilter(),
+                $params->getCount()
+            );
+        }
+
+        return response()->json([
+            'page' => $page,
+            'list' => $list,
+        ], $code);
+
+    }
+}

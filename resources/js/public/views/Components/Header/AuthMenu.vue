@@ -21,5 +21,6 @@ export default {
         margin-right: 10px;
         text-decoration: underline;
         color: #111;
+        font-size: 14px;
     }
 </style>

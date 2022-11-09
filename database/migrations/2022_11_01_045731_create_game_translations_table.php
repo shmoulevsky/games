@@ -26,6 +26,9 @@ return new class extends Migration
             $table->string('seo_description')->nullable();
             $table->string('seo_url')->nullable();
 
+            $table->integer('sort');
+            $table->boolean('is_active');
+
             $table->bigInteger('language_id')->unsigned()->nullable();
             $table->foreign('language_id')
                 ->references('id')->on('languages')

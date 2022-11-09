@@ -16,10 +16,12 @@ return new class extends Migration
         Schema::create('games', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('sort');
-            $table->boolean('is_active');
             $table->string('thumb')->nullable();
             $table->string('game');
+            $table->bigInteger('category_id')->unsigned()->nullable();
+            $table->foreign('category_id')
+                ->references('id')->on('game_categories')
+                ->onDelete('cascade');
 
         });
     }

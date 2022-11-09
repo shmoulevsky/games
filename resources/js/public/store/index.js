@@ -1,6 +1,7 @@
 import {createStore} from 'vuex'
 import VuexPersistence from 'vuex-persist'
 import page from "./modules/page";
+import info from "./modules/info";
 
 
 const vuexLocal = new VuexPersistence({
@@ -83,7 +84,8 @@ export default createStore({
         }
     },
     modules: {
-        page
+        page,
+        info
     },
     plugins: [vuexLocal.plugin]
 })

@@ -13,6 +13,6 @@ export default {
         text-align: center;
         padding: 30px 0px;
         margin-top: 30px;
-        border-top:5px solid #02f4be
+        border-top:5px solid #6E41E2;
     }
 </style>

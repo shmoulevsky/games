@@ -17,7 +17,8 @@ class CreateLanguagesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('code');
-            $table->integer('status')->default(0);
+            $table->integer('sort');
+            $table->boolean('is_active');
             $table->string('dir',6)->nullable();
         });
 

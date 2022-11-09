@@ -1,10 +1,10 @@
 <template>
-    <div>Game Detail</div>
+
 </template>
 
 <script>
 export default {
-    name: "GamesList"
+    name: "Article"
 }
 </script>
 

@@ -14,6 +14,7 @@ class GameShortResource extends JsonResource
             'thumb' => $this->thumb,
             'description' => $this->description,
             'date' => $this->date,
+            'url' => $this->url,
         ];
     }
 }

@@ -23,18 +23,23 @@ class GameController extends Controller
     public function index(Request $request)
     {
         $params = ParamListDTO::fromRequest($request, 'created_at', 'desc');
-        $users = $this->gameRepository->all(
+        $games = $this->gameRepository->all(
             $params->getSort(),
             $params->getDir(),
             $params->getFilter(),
             $params->getCount()
         );
-        return new GameCollection($users);
+        return new GameCollection($games);
     }
 
-    public function show($id)
+    public function detail(Request $request)
     {
-        $user = $this->gameRepository->getDetail($id);
-        return new GameResource($user);
+        $game = $this->gameRepository->getByCode($request->code);
+
+        if(empty($game)){
+            return null;
+        }
+
+        return new GameResource($game);
     }
 }

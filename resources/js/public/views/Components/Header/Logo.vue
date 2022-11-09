@@ -10,7 +10,7 @@ export default {
 
 <style scoped>
     .logo{
-        font-size: 60px;
+        font-size: 28px;
         font-weight: bold;
         color: #111;
     }
