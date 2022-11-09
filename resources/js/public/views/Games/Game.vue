@@ -28,6 +28,7 @@ import GameService from "../../services/GameService";
 
 export default {
     name: "Game",
+    props : ["params"],
     data() {
         return {
             game : {title : '', rules : ''},
@@ -41,24 +42,21 @@ export default {
     },
     methods : {
         init(){
-            let code = this.$route.params.code;
+
             let gameScript = window.document.createElement('script');
+            this.game = this.params.data.page ?? null;
 
-            GameService.getByCode(code)
-                .then((response) => {
-                    this.game = response.data.data ?? null;
-                    if (this.game.game){
-                        this.width = 800;
-                        this.height = 600;
-                        this.script = this.game.game;
+            if (this.game.game) {
+                this.width = 800;
+                this.height = 600;
+                this.script = this.game.game;
 
-                        this.isLoad = true;
-                        gameScript.setAttribute('src', this.game.game);
-                        gameScript.setAttribute('type', 'text/javascript');
-                        gameScript.setAttribute('async', 'true');
-                        document.body.appendChild(gameScript);
-                    }
-                })
+                this.isLoad = true;
+                gameScript.setAttribute('src', this.game.game);
+                gameScript.setAttribute('type', 'text/javascript');
+                gameScript.setAttribute('async', 'true');
+                document.body.appendChild(gameScript);
+            }
 
 
         }

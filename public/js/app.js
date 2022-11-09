@@ -18052,6 +18052,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Game",
+  props: ["params"],
   data: function data() {
     return {
       game: {
@@ -18068,23 +18069,19 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     init: function init() {
-      var _this = this;
-      var code = this.$route.params.code;
+      var _this$params$data$pag;
       var gameScript = window.document.createElement('script');
-      _services_GameService__WEBPACK_IMPORTED_MODULE_0__["default"].getByCode(code).then(function (response) {
-        var _response$data$data;
-        _this.game = (_response$data$data = response.data.data) !== null && _response$data$data !== void 0 ? _response$data$data : null;
-        if (_this.game.game) {
-          _this.width = 800;
-          _this.height = 600;
-          _this.script = _this.game.game;
-          _this.isLoad = true;
-          gameScript.setAttribute('src', _this.game.game);
-          gameScript.setAttribute('type', 'text/javascript');
-          gameScript.setAttribute('async', 'true');
-          document.body.appendChild(gameScript);
-        }
-      });
+      this.game = (_this$params$data$pag = this.params.data.page) !== null && _this$params$data$pag !== void 0 ? _this$params$data$pag : null;
+      if (this.game.game) {
+        this.width = 800;
+        this.height = 600;
+        this.script = this.game.game;
+        this.isLoad = true;
+        gameScript.setAttribute('src', this.game.game);
+        gameScript.setAttribute('type', 'text/javascript');
+        gameScript.setAttribute('async', 'true');
+        document.body.appendChild(gameScript);
+      }
     }
   }
 });

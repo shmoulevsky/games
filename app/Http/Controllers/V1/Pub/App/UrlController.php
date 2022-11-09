@@ -30,8 +30,7 @@ class UrlController
 
         $url = $this->urlRepository->getByUrl($url);
         $repository = RepositoryFactory::make($url->entity);
-
-        $page = $repository->getPage($url->id);
+        $page = $repository->getPage($url->entity_id);
         $list = [];
         $code = 200;
 

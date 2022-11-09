@@ -43,7 +43,7 @@ class GameRepository extends BaseRepository
         return $builder->orderBy($column, $dir)->paginate($count);
     }
 
-    public function getPage($code)
+    public function getPage($id)
     {
         $builder = $this->model
             ->select(
@@ -58,7 +58,7 @@ class GameRepository extends BaseRepository
                 $query->on('game_translations.game_id','=', 'games.id');
                 $query->where('game_translations.language_id','=', $this->currentLanguage);
             })
-            ->where('game_translations.seo_url', $code)
+            ->where('games.id', $id)
             ->where('game_translations.language_id', $this->currentLanguage)
             ->where('is_active', 1);
 

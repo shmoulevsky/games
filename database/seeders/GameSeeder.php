@@ -8,48 +8,74 @@ class GameSeeder extends BaseSeeder
 
     public function run()
     {
-        $games = [
-            ['name' => 'Веселый счет', 'seo_url' => 'happy-count', 'game' => '/storage/js/games/2/bundle.js', 'category_id' => 1],
-            ['name' => 'Рассели по домикам', 'seo_url' => 'house', 'game' => '/storage/js/games/2/bundle.js', 'category_id' => 1],
-            ['name' => 'Таблица Шульте', 'seo_url' => 'shulte', 'game' => '/storage/js/games/2/bundle.js', 'category_id' => 1],
-            ['name' => 'Запомни', 'seo_url' => 'memory', 'game' => '/storage/js/games/2/bundle.js', 'category_id' => 1],
-            ['name' => 'Найди буквы', 'seo_url' => 'letters', 'game' => '/storage/js/games/2/bundle.js', 'category_id' => 1],
-            ['name' => 'Расставь по порядку', 'seo_url' => 'order', 'game' => '/storage/js/games/2/bundle.js', 'category_id' => 1],
-            ['name' => 'Быстрая сортировка', 'seo_url' => 'quick-sort', 'game' => '/storage/js/games/2/bundle.js', 'category_id' => 1],
-            ['name' => 'Фигуры', 'seo_url' => 'figures', 'game' => '/storage/js/games/2/bundle.js', 'category_id' => 1],
-            ['name' => 'Найди соседа', 'seo_url' => 'neighbour', 'game' => '/storage/js/games/2/bundle.js', 'category_id' => 2],
+
+        $games[1] = [
+            ["title" => "Веселый счет"],
+            ["title" => "Рассели по домикам"],
+            ["title" => "Таблица Шульте"],
+            ["title" => "Запомни"],
+            ["title" => "Найди буквы"],
+            ["title" => "Расставь по порядку"],
+            ["title" => "Быстрая сортировка"],
+            ["title" => "Фигуры"],
+            ["title" => "Найди соседа"],
+        ];
+
+        $games[2] = [
+            ["title" => "Happy count"],
+            ["title" => "Houses"],
+            ["title" => "Shulte"],
+            ["title" => "Remember"],
+            ["title" => "Find letters"],
+            ["title" => "Make order"],
+            ["title" => "Quick sort"],
+            ["title" => "Figures"],
+            ["title" => "Find neighbour"],
+        ];
+
+
+        $prefix = [
+            1 => '/игры/',
+            2 => '/games/',
         ];
 
         $languages = [1,2];
 
-        foreach ($games as $key => $game){
+        foreach ($games[1] as $key => $game) {
 
             $list[] = [
-                'category_id' => $game['category_id'],
+                'category_id' => 1,
                 'game' => '/storage/js/games/2/bundle.js',
                 'thumb' => '/storage/thumbs/games/2.png'
             ];
+        }
 
-            foreach ($languages as $language){
+        foreach ($languages as $language){
+
+            foreach ($games[$language] as $key => $game){
 
                 $translations[] = [
-                    'title' => $game['name'],
-                    'description' => '-',
-                    'seo_title' => $game['name'],
-                    'seo_keywords' => '-',
-                    'seo_description' => '-',
-                    'seo_url' => $game['seo_url'].'-'.$language,
-                    'sort' => $key * 10,
-                    'is_active' => 1,
-                    'game_id' => $key+1,
-                    'language_id' => $language,
-                ];
+                        'title' => $game['title'],
+                        'description' => '-',
+                        'seo_title' => $game['title'],
+                        'seo_keywords' => '-',
+                        'seo_description' => '-',
+                        'seo_url' => str_ireplace(' ','-',(strtolower($game['title']))),
+                        'sort' => $key * 10,
+                        'is_active' => 1,
+                        'game_id' => $key+1,
+                        'language_id' => $language,
+                    ];
 
-                $urls[] = ['entity' => 'game', 'entity_id' => $key+1, 'language_id' => $language , 'url' => '/games/count/'.$game['seo_url'].'-'.$language]
-                ;
+                    $urls[] = [
+                        'entity' => 'game',
+                        'entity_id' => $key+1,
+                        'language_id' => $language ,
+                        'url' => $prefix[$language].str_ireplace(' ','-',(strtolower($game['title'])))
+                    ];
 
+                }
             }
-        }
 
         $this->service->make('games', $list);
         $this->service->make('game_translations', $translations);
