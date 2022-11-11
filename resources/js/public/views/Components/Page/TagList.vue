@@ -1,7 +1,10 @@
 <template>
     <ul class="tags">
-        <li v-for="(item, key) in menu">
-            <router-link :to="{path : item.url}">{{item.title}}</router-link>
+        <li v-for="(tag, key) in this.tagProps"
+            @click="select(tag)"
+            :class="tag.selected ? 'selected': ''"
+        >
+            <router-link :to="{path : tag.url }">{{tag.title}}</router-link>
         </li>
     </ul>
 </template>
@@ -9,14 +12,18 @@
 <script>
 export default {
     name: "TagList",
+    props : ["tagProps"],
     data(){
         return {
-            menu : [
-                {"title" : "Math", "url" : "/"},
-                {"title" : "Geometry", "url" : "/games"},
-                {"title" : "5-6", "url" : "/blog"},
-                {"title" : "Logic", "url" : "/about"},
-            ]
+            tags : []
+        }
+    },
+    mounted() {
+        this.tags = this.tagProps;
+    },
+    methods : {
+        select(tag){
+            tag.selected = true;
         }
     }
 }

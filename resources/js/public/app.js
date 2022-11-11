@@ -1,9 +1,10 @@
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap";
+
 import VueAxios from "vue-axios";
 import { i18nVue } from 'laravel-vue-i18n'
 import axios from "./services/axios";
 import store from "./store";
-
-require('../bootstrap');
 
 import {createApp} from 'vue'
 import router from "./router";

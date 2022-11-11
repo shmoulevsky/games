@@ -59,7 +59,6 @@ export default {
         login(){
 
             let form = new FormData();
-
             form.append('email', this.email);
             form.append('password', this.password);
             this.$store.dispatch('login', form)

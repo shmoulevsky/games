@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('entity')->index();
             $table->bigInteger('entity_id')->unsigned()->index();
             $table->bigInteger('language_id')->unsigned();
+            $table->boolean('is_root')->default(0);
             $table->boolean('is_list')->default(0);
             $table->json('list')->nullable();
 

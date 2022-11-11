@@ -33,14 +33,20 @@ class UrlController
         $page = $repository->getPage($url->entity_id);
         $list = [];
         $code = 200;
+        $filter = [];
 
         if($url->is_list){
             $type = json_decode($url->list, true);
             $repositoryList = RepositoryFactory::make($type[0]);
+
+            if($url->is_root === 0){
+                $filter['category_id'] = $page->id;
+            }
+
             $list = $repositoryList->getPageList(
                 $params->getSort(),
                 $params->getDir(),
-                $params->getFilter(),
+                $filter,
                 $params->getCount()
             );
         }

@@ -23,6 +23,8 @@ class DatabaseSeeder extends Seeder
             GameCategorySeeder::class,
             GameSeeder::class,
             SettingsSeeder::class,
+            ArticleCategorySeeder::class,
+            ArticleSeeder::class,
             UrlSeeder::class,
         ]);
     }

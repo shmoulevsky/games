@@ -34,7 +34,18 @@ export default{
             return state.info.languages ?? [];
         },
         getTopMenu(state){
-            return state.info.top_menu[state.language] ?? [];
+            let topMenu = [];
+            if(state.info.top_menu && state.language){
+                topMenu = state.info.top_menu[state.language]
+            }
+            return topMenu;
+        },
+        getSideMenu(state){
+            let sideMenu = [];
+            if(state.info.side_menu && state.language){
+                sideMenu = state.info.side_menu[state.language]
+            }
+            return sideMenu;
         },
         getLanguage(state){
             return state.language;

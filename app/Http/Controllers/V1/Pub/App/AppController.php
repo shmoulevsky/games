@@ -27,7 +27,8 @@ class AppController
 
         return response()->json([
             'languages' => $languages,
-            'top_menu' => json_decode($info['top_menu']->json)
+            'top_menu' => json_decode($info['top_menu']->json),
+            'side_menu' => json_decode($info['side_menu']->json)
         ]);
     }
 }

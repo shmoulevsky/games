@@ -30,7 +30,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['jwt.auth' , 'panel']], func
     Route::resource('games', GameController::class);
 });
 
-Route::get('games/{code}', [\App\Http\Controllers\V1\Pub\Game\GameController::class, 'detail']);
-Route::get('games', [\App\Http\Controllers\V1\Pub\Game\GameController::class, 'index']);
 Route::get('app', [\App\Http\Controllers\V1\Pub\App\AppController::class, 'index']);
 Route::get('url', [\App\Http\Controllers\V1\Pub\App\UrlController::class, 'index']);
+Route::get('tags', [\App\Http\Controllers\V1\Pub\App\TagController::class, 'index']);

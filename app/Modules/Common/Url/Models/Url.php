@@ -15,6 +15,7 @@ class Url extends Model
 
     public const ARTICLE = 'article';
     public const ARTICLE_CATEGORY = 'article_category';
+    public const TAG = 'tag';
 
 
     use HasFactory;

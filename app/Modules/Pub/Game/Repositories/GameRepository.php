@@ -36,6 +36,10 @@ class GameRepository extends BaseRepository
             })
             ->where('is_active', 1);
 
+        if(!empty($filter['category_id'])){
+            $builder->where('category_id', $filter['category_id']);
+        }
+
         if($column === 'created_at'){
             $column = 'games.'.$column;
         }

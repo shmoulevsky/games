@@ -1,7 +1,7 @@
 <template>
     <h1>Games</h1>
     <div class="tags-wrap">
-        <tag-list></tag-list>
+        <tag-list :tagProps="tags"></tag-list>
     </div>
     <div class="game" v-for="(game, key) in this.games">
         <router-link :style="{backgroundImage: 'url(' + game.thumb + ')' }"
@@ -22,6 +22,7 @@
 
 <script>
 import TagList from "../Components/Page/TagList";
+import TagService from "../../services/TagService";
 
 export default {
     name: "GameCategory",
@@ -29,11 +30,23 @@ export default {
     props : ["params"],
     data(){
         return {
-            games : {}
+            games : {},
+            tags : {}
         }
+    },
+    computed : {
+
     },
     mounted() {
         this.games = this.params.data.list.data;
+
+        let type = this.params.data.type ?? null;
+        let categoryId = this.params.data.page.id ?? null;
+
+        TagService.getByCategory(categoryId, type, window.location.pathname).then((response) => {
+            this.tags = response.data.tags;
+        })
+
     }
 }
 </script>

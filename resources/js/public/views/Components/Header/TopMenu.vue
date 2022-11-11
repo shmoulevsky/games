@@ -16,7 +16,7 @@ export default {
     },
     computed : {
         menu(){
-            return this.$store.getters.getTopMenu;
+            return this.$store.getters.getTopMenu ?? [];
         }
     }
 }

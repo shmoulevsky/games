@@ -27,7 +27,6 @@ export default {
         this.$store.dispatch('setLanguage', language);
     },
     mounted () {
-
         this.$store.dispatch('getInfo');
     }
 }

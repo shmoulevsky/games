@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('title')->nullable();
+            $table->text('description')->nullable();
             $table->text('content')->nullable();
             $table->json('additional')->nullable();
 

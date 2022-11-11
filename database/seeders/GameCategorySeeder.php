@@ -13,6 +13,7 @@ class GameCategorySeeder extends BaseSeeder
     public function run()
     {
         $categories[1] = [
+            ["url" => "игры", "title" => "Игры"],
             ["url" => "математика", "title" => "Математика"],
             ["url" => "геометрия", "title" => "Геометрия"],
             ["url" => "буквы", "title" => "Буквы"],
@@ -22,6 +23,7 @@ class GameCategorySeeder extends BaseSeeder
         ];
 
         $categories[2] = [
+            ["url" => "games", "title" => "Games"],
             ["url" => "math", "title" => "Math"],
             ["url" => "geom", "title" => "Geometry"],
             ["url" => "letters", "title" => "Letters"],
@@ -57,10 +59,15 @@ class GameCategorySeeder extends BaseSeeder
                     'language_id' => $language,
                 ];
 
+                if($key === 0) continue;
+
                 $urls[] = [
                     'entity' => 'game_category',
                     'entity_id' => $key+1,
                     'language_id' => $language ,
+                    'is_root' => 0,
+                    'is_list' => 1,
+                    'list' => json_encode(['game']),
                     'url' => $prefix[$language].$category['url']
                 ];
 

@@ -19,10 +19,23 @@ class UserSeeder extends Seeder
     {
         $users = [
             [
+                'name' => 'Admin',
+                'lastname' => 'Adminskiy',
+                'email' => 'admin@gmail.com',
+                'phone' => '+79231234555',
+                'group_id' => 1,
+                'access_panel' => 1,
+                'password' => "123123",
+                'country_id' => 1,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'email_verified_at' => Carbon::now(),
+            ],
+            [
                 'name' => 'Eugeny',
                 'lastname' => 'Shmoulevskiy',
-                'email' => 'shmoulevskiye@gmail.com',
-                'phone' => '+792312345678',
+                'email' => 'shmoulevskye@gmail.com',
+                'phone' => '+79231232567',
                 'group_id' => 1,
                 'access_panel' => 1,
                 'password' => "123123",

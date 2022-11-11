@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 
+use App\Modules\Common\Url\Models\Url;
+
 class GameSeeder extends BaseSeeder
 {
 
@@ -44,7 +46,7 @@ class GameSeeder extends BaseSeeder
         foreach ($games[1] as $key => $game) {
 
             $list[] = [
-                'category_id' => 1,
+                'category_id' => random_int(2,3),
                 'game' => '/storage/js/games/2/bundle.js',
                 'thumb' => '/storage/thumbs/games/2.png'
             ];
@@ -68,7 +70,7 @@ class GameSeeder extends BaseSeeder
                     ];
 
                     $urls[] = [
-                        'entity' => 'game',
+                        'entity' => Url::GAME,
                         'entity_id' => $key+1,
                         'language_id' => $language ,
                         'url' => $prefix[$language].str_ireplace(' ','-',(strtolower($game['title'])))

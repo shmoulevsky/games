@@ -12,13 +12,11 @@ export default {
     name: "SideMenu",
     data(){
         return {
-            menu : [
-                {"title" : "Math", "url" : "/games/math"},
-                {"title" : "Reading", "url" : "/games/reading"},
-                {"title" : "Geometry", "url" : "/games/geometry"},
-                {"title" : "Memory", "url" : "/games/memory"},
-                {"title" : "Logic", "url" : "/games/logic"},
-            ]
+        }
+    },
+    computed : {
+        menu(){
+            return this.$store.getters.getSideMenu ?? [];
         }
     }
 }

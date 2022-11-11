@@ -1,13 +1,36 @@
 <template>
     <div class="auth-wrap">
-        <router-link :to="{path : '/login'}">Login</router-link>
-        <router-link :to="{path : '/register'}">Register</router-link>
+        <template v-if="!isAuth">
+            <router-link :to="{path : '/login'}">Login</router-link>
+            <router-link :to="{path : '/register'}">Register</router-link>
+        </template>
+        <template v-else>
+            <a v-if="isPanelAccess" href="/admin/dashboard">Dashboard</a>
+            <router-link :to="{path : '/personal'}">Hello, {{userName}}!</router-link>
+            <a @click.prevent="logout" href="#">Log out</a>
+        </template>
     </div>
 </template>
 
 <script>
 export default {
-    name: "AuthMenu"
+    name: "AuthMenu",
+    computed : {
+        isAuth(){
+            return this.$store.getters.isAuth;
+        },
+        userName(){
+            return this.$store.getters.getUserName ?? ''
+        },
+        isPanelAccess(){
+            return this.$store.getters.isPanelAccess == 1
+        }
+    },
+    methods : {
+        logout(){
+            this.$store.dispatch('logout', '');
+        }
+    }
 }
 </script>
 
