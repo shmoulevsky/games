@@ -9,6 +9,12 @@ use App\Modules\Common\Url\Repositories\UrlRepository;
 
 class UrlService extends BaseService
 {
+    const TYPES = [
+        Url::ARTICLE_CATEGORY => Url::ARTICLE,
+        Url::PAGE_CATEGORY => Url::PAGE,
+        Url::GAME_CATEGORY => Url::GAME,
+    ];
+
     protected $modelClass = Url::class;
     protected $repositoryClass = UrlRepository::class;
 
@@ -23,4 +29,10 @@ class UrlService extends BaseService
 
         return $url;
     }
+
+    public function getChildType(string $type)
+    {
+        return self::TYPES[$type];
+    }
+
 }

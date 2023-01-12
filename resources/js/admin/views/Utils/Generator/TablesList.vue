@@ -38,24 +38,24 @@
 
                 </p>
                 <ul class="list-group">
-                    <li v-for="(column, index) in this.columns" class="list-group-item">
+                    <li v-for="(field, index) in this.fields" class="list-group-item">
                         <div class="form-group">
                             <input
                                 class="form-control"
                                 type="text"
-                                :name="column.Field"
-                                :id="column.Field"
-                                :key="column.Field+index"
-                                :value="column.name"
+                                :name="field.title"
+                                :id="field.title"
+                                :key="field.title+index"
+                                :value="field.title"
                             >
                             <div class="form-check mt-1">
                                 <input
                                     class="form-check-input form-check-primary form-check-glow"
                                     type="checkbox"
-                                    :name="column.Field + '-show'"
-                                    :id="column.Field + '-show'"
-                                    :key="column.Field+index+ '-show'"
-                                    :value="{'code' : column.Field,'title' : column.name}"
+                                    :name="field.title + '-show'"
+                                    :id="field.title + '-show'"
+                                    :key="field.title+index+ '-show'"
+                                    :value="{'code' : index,'title' : field.title}"
                                     v-model="checkedFields"
                                 >
                                 <label class="form-check-label" :for="column.Field + '-show'">{{$t('is show')}}</label>
@@ -104,14 +104,7 @@ export default {
         },
         showTable(){
             axiosInstance.get('admin/generator/table/' + this.tableName).then((response) => {
-                this.columns = response.data.columns;
-
-                this.columns.map((item) => {
-                   item.name = item.Field.charAt(0).toUpperCase() + item.Field.slice(1);
-                   item.name = item.name.replace('_',' ');
-                   return  item;
-                });
-
+                this.fields = response.data.fields;
                 this.isFirstStep = false;
             })
         },

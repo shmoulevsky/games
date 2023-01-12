@@ -49,7 +49,9 @@ export default {
             if (this.game.game) {
                 this.width = 800;
                 this.height = 600;
+                this.language = localStorage.getItem('language');
                 this.script = this.game.game;
+
 
                 this.isLoad = true;
                 gameScript.setAttribute('src', this.game.game);

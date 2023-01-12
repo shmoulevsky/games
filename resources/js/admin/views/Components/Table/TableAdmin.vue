@@ -22,8 +22,17 @@
             <td class="heading">{{$t('Actions')}}</td>
         </tr>
         <tr v-for="item in items" :key="item.id">
-            <td v-for="(column, index) in columns" :key="index">
-                {{item[column]}}
+            <td v-for="(header, index) in headers" :key="index">
+                <template v-if="header.type === 'img'">
+                    <img alt="" style="max-height: 90px;" :src="item[header.code]"/>
+                </template>
+                <template v-else-if="header.type === 'url'">
+                    <a :href="item[header.url]">{{item[header.code]}}</a>
+                </template>
+                <template v-else>
+                    {{item[header.code]}}
+                </template>
+
             </td>
             <td>
                 <router-link class="btn icon icon-left btn-primary m-lg-2" :to="{ name: route_edit_name, params: { 'id' : item.id }}"><i class="bi bi-pen"></i></router-link>

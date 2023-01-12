@@ -17,7 +17,6 @@
 <div id="admin-app"></div>
 <script src="/admin/js/admin.js"></script>
 <script src="/admin/assets/js/bootstrap.js"></script>
-<script src="/admin/assets/js/app.js"></script>
 
 </body>
 </html>

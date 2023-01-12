@@ -2,8 +2,8 @@
 	<div class="card card-primary card-outline">
 		<div class="card-body">
 			<table-admin
-				route_create_name="common.create"
-				route_edit_name="common.edit"
+				:route_create_name="add"
+				:route_edit_name="edit"
 				:columns="columns"
 				:items="items.data"
 				:headers="headers"
@@ -34,10 +34,11 @@ export default {
 			items: {},
 			offset: null,
 			headers: {},
-			columns: {},
 			per_page: null,
 			sort: null,
 			dir: null,
+			add: '',
+			edit: '',
 			current_page: 1,
 		};
 	},
@@ -47,12 +48,6 @@ export default {
 	},
     computed : {
     },
-	watch: {
-		"$route.params.entity": function () {
-			DataService.url = this.$route.params.entity;
-			this.getItems();
-		},
-	},
 	methods: {
 		getItems(page, sort, dir) {
 
@@ -77,19 +72,18 @@ export default {
 		},
 		setDefault() {
 
-            let table = this.$route.params.entity;
+            let table = window.location.pathname.split("/").pop();
+            this.title = tableConfig[table].title ?? [];
+            this.headers = tableConfig[table].headers ?? [];
+            this.offset = tableConfig[table].offset ?? [];
+            this.per_page = tableConfig[table].per_page ?? [];
+            this.add = tableConfig[table].add ?? [];
+            this.edit = tableConfig[table].edit ?? [];
+            this.$store.dispatch('setTitle', this.title);
 
-            axiosInstance.get('/admin/generator/info/list/' + table).then((response) => {
-                this.title = response.data.list.title ?? [];
-                this.headers = response.data.list.headers ?? [];
-                this.columns = response.data.list.columns ?? [];
-                this.offset = response.data.list.offset ?? [];
-                this.per_page = response.data.list.per_page ?? [];
+            DataService.url = table;
+            this.getItems();
 
-                this.$store.dispatch('setTitle', this.title);
-
-                this.getItems();
-            })
 
 		},
 	},

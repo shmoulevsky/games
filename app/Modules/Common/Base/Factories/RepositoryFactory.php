@@ -9,6 +9,7 @@ use App\Modules\Admin\Page\Repositories\PageRepository;
 use App\Modules\Common\Url\Models\Url;
 use App\Modules\Pub\Game\Repositories\GameCategoryRepository;
 use App\Modules\Pub\Game\Repositories\GameRepository;
+use App\Modules\Pub\Repositories\TagRepository;
 
 class RepositoryFactory
 {
@@ -21,6 +22,7 @@ class RepositoryFactory
             case Url::ARTICLE_CATEGORY : return app()->make(ArticleCategoryRepository::class);
             case Url::PAGE : return app()->make(PageRepository::class);
             case Url::PAGE_CATEGORY : return app()->make(PageCategoryRepository::class);
+            case Url::TAG : return app()->make(TagRepository::class);
         }
 
         return null;

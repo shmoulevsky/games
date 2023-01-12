@@ -41,10 +41,10 @@ export default {
         this.games = this.params.data.list.data;
 
         let type = this.params.data.type ?? null;
-        let categoryId = this.params.data.page.id ?? null;
+        let categoryId = this.params.data.page.category_id ?? this.params.data.page.id ?? null;
 
         TagService.getByCategory(categoryId, type, window.location.pathname).then((response) => {
-            this.tags = response.data.tags;
+            this.tags = response.data.data;
         })
 
     }

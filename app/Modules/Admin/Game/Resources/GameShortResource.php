@@ -10,7 +10,11 @@ class GameShortResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'translations' => $this->translations(),
+            'title' => $this->title,
+            'created_at' => $this->created_at->format('d.m.Y, H:i:s'),
+            'thumb' => $this->thumb,
+            'url' => $this->url,
+            'category' => $this->category_id,
         ];
     }
 }

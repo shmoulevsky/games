@@ -21,6 +21,7 @@ return new class extends Migration
             $table->bigInteger('language_id')->unsigned();
             $table->boolean('is_root')->default(0);
             $table->boolean('is_list')->default(0);
+            $table->string('tag')->nullable();
             $table->json('list')->nullable();
 
             $table->foreign('language_id')

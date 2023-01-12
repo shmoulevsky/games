@@ -1,7 +1,12 @@
 <template>
     <ul class="top-menu">
         <li v-for="(item, key) in menu">
-            <router-link :to="{path : item.url}">{{item.title}}</router-link>
+            <router-link
+                :to="{path : item.url}"
+                :class="item.selected ? 'selected' : ''"
+            >
+                {{item.title}}
+            </router-link>
         </li>
     </ul>
 
@@ -16,7 +21,8 @@ export default {
     },
     computed : {
         menu(){
-            return this.$store.getters.getTopMenu ?? [];
+            let items = this.$store.getters.getTopMenu;
+            return items ?? [];
         }
     }
 }
@@ -38,5 +44,9 @@ export default {
         color: #222;
         font-size: 18px;
         text-decoration: none;
+    }
+
+    .top-menu li a.router-link-active{
+       border-bottom: 2px solid #6e41e2;
     }
 </style>

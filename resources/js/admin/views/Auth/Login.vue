@@ -3,6 +3,9 @@
                 <div>
                     <h1 class="auth-title">Log in</h1>
                     <p class="auth-subtitle mb-5">Log in with your data that you entered during registration.</p>
+                    <div class="error-title">
+                        <span>{{loginErrors ?? ''}}</span>
+                    </div>
 
                     <form>
 
@@ -44,17 +47,17 @@ export default {
         return{
             email : '',
             password : '',
-            isError : false,
-            error : '',
-            emailError : '',
-            passwordError : ''
-
+            isError : false
         }
     },
     components: {
 
     },
-    computed: [],
+    computed: {
+        loginErrors() {
+            return this.$store.getters.getLoginErrors;
+        }
+    },
     methods : {
         login(){
 
@@ -62,7 +65,6 @@ export default {
             form.append('email', this.email);
             form.append('password', this.password);
             this.$store.dispatch('login', form)
-
         },
         validateEmail(value) {
             // if the field is empty

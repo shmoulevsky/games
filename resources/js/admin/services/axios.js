@@ -13,8 +13,9 @@ let axiosInstance = axios.create({
     },
 });
 
-axiosInstance.interceptors.response.use(response => response, error => {
-
+axiosInstance.interceptors.response.use(function (response) {
+    return response;
+}, function (error) {
 
     if (error.response.status === 400) {
         store.dispatch('logout').then((response) => {
@@ -35,6 +36,9 @@ axiosInstance.interceptors.response.use(response => response, error => {
         })
     }
 
-})
+    return Promise.reject(error);
+});
+
+
 
 export default axiosInstance;

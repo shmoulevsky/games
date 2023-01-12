@@ -37,6 +37,8 @@ let users = {
     },
 ],
     columns: ["id","created_at", "email", "name", "lastname"],
+    add: "admin.user.add",
+    edit: "admin.user.edit"
 }
 
 export default users;

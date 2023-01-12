@@ -9,10 +9,10 @@ class GameTranslationRepository extends BaseRepository
 {
     protected $modelClass = GameTranslation::class;
 
-    public function find(string $languageCode, int $gameId)
+    public function find(string $languageId, int $gameId)
     {
         return $this->model->where([
-            ['language_id', $languageCode],
+            ['language_id', $languageId],
             ['game_id', $gameId],
         ])->first();
     }

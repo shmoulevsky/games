@@ -16,22 +16,14 @@ return new class extends Migration
         Schema::create('tags', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('tag');
-            $table->integer('sort');
-            $table->boolean('is_active');
-
-            $table->bigInteger('language_id')->unsigned()->nullable();
-            $table->foreign('language_id')
-                ->references('id')->on('languages')
-                ->onDelete('set null');
+            $table->string("taggable_type")->index();
 
         });
 
         Schema::create('taggables', function (Blueprint $table) {
-            $table->integer("tag_id");
-            $table->integer("taggable_id");
-            $table->string("taggable_type");
-            $table->integer("category_id")->nullable();
+            $table->integer("tag_id")->index();
+            $table->integer("taggable_id")->index();
+            $table->string("taggable_type")->index();
         });
 
     }

@@ -40,6 +40,10 @@ class GameRepository extends BaseRepository
             $builder->where('category_id', $filter['category_id']);
         }
 
+        if(!empty($filter['id'])){
+            $builder->whereIn('games.id', $filter['id']);
+        }
+
         if($column === 'created_at'){
             $column = 'games.'.$column;
         }
@@ -67,5 +71,14 @@ class GameRepository extends BaseRepository
             ->where('is_active', 1);
 
         return $builder->first();
+    }
+
+    public function getByTag($tagId)
+    {
+        return DB::table('taggables')
+            ->where('tag_id', $tagId)
+            ->get()
+            ->pluck('taggable_id')
+            ->toArray();
     }
 }

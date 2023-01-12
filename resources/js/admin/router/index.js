@@ -1,7 +1,7 @@
 import {createRouter, createWebHistory} from "vue-router";
 import routes from "./routes";
-import axios from "axios";
 import store from './../store';
+
 
 const router = createRouter({
     history: createWebHistory(),
@@ -10,6 +10,8 @@ const router = createRouter({
 
 
 router.beforeEach(function (to, from, next) {
+
+    console.log(store.getters.isAuth);
 
     if (store.getters.isAuth && to.name === 'login') {
         next({ name: 'dashboard' })

@@ -2,7 +2,7 @@
     <span class="title">{{$t('Our games')}}</span>
     <ul class="side-menu">
         <li v-for="(item, key) in menu">
-            <router-link :to="{path : item.url}">{{item.title}}</router-link>
+            <router-link :to="{path : item.url}"><span>{{item.title}}</span></router-link>
         </li>
     </ul>
 </template>
@@ -39,4 +39,13 @@ export default {
     font-size: 17px;
     text-decoration: none;
 }
+
+.side-menu li a.span{
+    border-bottom: 2px solid #fff;
+    padding-bottom: 2px;
+}
+.side-menu li a.router-link-active span{
+    border-bottom: 2px solid #6e41e2;
+}
+
 </style>

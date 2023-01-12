@@ -3,26 +3,87 @@
 namespace App\Http\Controllers\V1\Admin;
 
 
-use App\Http\Controllers\V1\Common\BaseController;
+use App\Modules\Admin\Game\DTO\GameDTO;
 use App\Modules\Admin\Game\Repositories\GameRepository;
-use App\Modules\Admin\Game\Requests\GameDeleteRequest;
 use App\Modules\Admin\Game\Requests\GameStoreRequest;
-use App\Modules\Admin\Game\Requests\GameUpdateRequest;
 use App\Modules\Admin\Game\Resources\GameCollection;
 use App\Modules\Admin\Game\Resources\GameResource;
 use App\Modules\Admin\Game\Services\GameService;
+use App\Modules\Common\Base\DTO\ParamListDTO;
+use App\Modules\Common\Country\Services\CountryService;
+use App\Modules\Common\Language\Services\LanguageService;
+use Illuminate\Http\Request;
 
-class GameController extends BaseController
+class GameController
 {
-    protected string $repositoryClass = GameRepository::class;
-    protected string $serviceClass = GameService::class;
-    protected string $collectionClass = GameCollection::class;
-    protected string $resourceClass = GameResource::class;
+    private GameRepository $gameRepository;
+    private GameService $gameService;
 
-    protected $storeRequestClass = GameStoreRequest::class;
-    protected $updateRequestClass = GameUpdateRequest::class;
-    protected $deleteRequestClass = GameDeleteRequest::class;
+    public function __construct(
+        GameRepository $gameRepository,
+        GameService $gameService
+    )
+    {
+        $this->gameRepository = $gameRepository;
+        $this->gameService = $gameService;
+    }
 
-    protected string $defaultSort = 'id';
-    protected string $defaultDir = 'asc';
+    public function index(Request $request)
+    {
+        $params = ParamListDTO::fromRequest($request, 'created_at', 'desc');
+        $games = $this->gameRepository->all(
+            $params->getSort(),
+            $params->getDir(),
+            $params->getFilter(),
+            $params->getCount()
+        );
+        return new GameCollection($games);
+    }
+
+    public function show($id)
+    {
+        $game = $this->gameRepository->getById($id);
+        return new GameResource($game);
+    }
+
+    public function store(GameStoreRequest $request)
+    {
+        $dto = new GameDTO(
+            null,
+            $request->game,
+            $request->thumb,
+            $request->translations,
+            CountryService::getCurrent(),
+            LanguageService::getCurrent()
+        );
+
+        $game = $this->gameService->createOrUpdate($dto);
+
+        return response()->json([
+            'game' => $game
+        ]);
+
+    }
+
+    public function update(Request $request)
+    {
+
+        $dto = new GameDTO(
+            $request->id,
+            $request->game,
+            $request->thumb,
+            $request->translations,
+            CountryService::getCurrent(),
+            LanguageService::getCurrent()
+        );
+
+        $game = $this->gameService->createOrUpdate($dto);
+
+        return response()->json([
+            'game' => $game
+        ]);
+
+    }
+
+
 }

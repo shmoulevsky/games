@@ -24,10 +24,9 @@ class GameService extends BaseTranslationService
 
         DB::transaction(function () use ($dto, $game){
 
-            $game->sort = $dto->sort ?? self::DEFAULT_SORT;
-            $game->is_active = $dto->is_active ?? self::DEFAULT_ACTIVE;
             $game->game = $dto->game;
             $game->thumb = $dto->thumb ?? null;
+            $game->category_id = $dto->category_id ?? null;
             $game->save();
 
             $this->storeTranslations($dto->translations, $game);
