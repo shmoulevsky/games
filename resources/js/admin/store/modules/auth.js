@@ -35,28 +35,31 @@ export default{
             ctx.commit('setToken', null);
         },
         async login(ctx, payload) {
+            return new Promise((resolve, reject) => {
+                return AuthService.login(payload).then(response => {
 
-            AuthService.login(payload).then(response => {
+                    localStorage.setItem('token', response.data.access_token);
 
-                localStorage.setItem('token', response.data.access_token);
+                    ctx.commit('setAuth', true);
+                    ctx.commit('setToken', response.data.access_token);
+                    //ctx.commit('setUser', response.data.user);
 
-                ctx.commit('setAuth', true);
-                ctx.commit('setToken', response.data.access_token);
+                    axiosInstance.defaults.headers.common = { 'Authorization': 'Bearer '+ localStorage.getItem('token')};
+                    window.location.href = '/admin/dashboard';
 
-                axiosInstance.defaults.headers.common = { 'Authorization': 'Bearer '+ localStorage.getItem('token')};
-                window.location.href = '/admin/dashboard';
+                    resolve(response);
 
-            }).catch(error => {
+                }).catch(error => {
 
-                let errors = [];
-
-                if(error.response.status === 422) {
-                    for (const key in error.response.data) {
-                        errors.push(error.response.data[key]);
+                    let errors = [];
+                    if(error.response.status === 422) {
+                        for (const key in error.response.data.errors) {
+                            errors += error.response.data.errors[key]+'<br/>';
+                        }
+                        reject(errors)
                     }
-                    ctx.commit('setLoginErrors', errors);
-                }
-            });
+                });
+            })
 
         },
         async refreshToken(ctx) {

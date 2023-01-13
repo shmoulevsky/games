@@ -1,4 +1,5 @@
 <template>
+    <div class="mb-3">
     <label for="">{{ field.title }}</label>
     <textarea
         class="form-control"
@@ -8,6 +9,7 @@
         @input="$emit('update:modelValue', $event.target.value)"
     >{{modelValue}}</textarea>
     <span v-show="field.er" class="invalid-feedback">{{ field.message }}</span>
+    </div>
 </template>
 
 <script>

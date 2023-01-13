@@ -14,6 +14,8 @@ class GameTranslation extends Model
         'game_id',
         'description',
         'rules',
+        'sort',
+        'is_active',
         'seo_title',
         'seo_keywords',
         'seo_description',

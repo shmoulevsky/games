@@ -6,6 +6,14 @@
                 <a href="#" class="burger-btn d-block d-xl-none">
                     <i class="bi bi-justify fs-3"></i>
                 </a>
+                <div class="flex-row d-flex">
+                    <div class="flex-column">
+
+                    </div>
+                    <div class="flex-column d-flex end">
+                        <language-select></language-select>
+                    </div>
+                </div>
             </header>
             <page-title></page-title>
 
@@ -25,10 +33,16 @@
 import SideBar from "./Components/SideBar"
 import PageTitle from "./Components/PageTitle"
 import PageFooter from "./Components/PageFooter"
+import AppInfoService from "../services/AppInfoService";
+import LanguageSelect from "./Components/LanguageSelect.vue";
+import {mapGetters} from "vuex";
 
 export default {
-    components: {SideBar, PageTitle, PageFooter},
+    components: {LanguageSelect, SideBar, PageTitle, PageFooter},
     computed: {
+        ...mapGetters({
+            userName: 'getUser',
+        }),
         isAuth() {
             return this.$store.getters.isAuth;
         }
@@ -37,8 +51,14 @@ export default {
         return {
         }
     },
-    mounted() {
-        this.refresh();
+    created() {
+        let language = localStorage.getItem('language') ?? 1;
+        this.$store.dispatch('setLanguage', language);
+    },
+    mounted () {
+        AppInfoService.getInfo().then(response => {
+            this.$store.dispatch('setInfo', response.data);
+        })
     },
     methods : {
         refresh(){

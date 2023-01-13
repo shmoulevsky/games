@@ -3,12 +3,16 @@ import router from "../router";
 import store from "../store";
 
 let token = localStorage.getItem('token') ?? null;
+let language = store.getters.getLanguage;
+
+console.log(language);
 
 let axiosInstance = axios.create({
     baseURL: process.env.API_URL || 'http://games.ru/api',
     headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
+        "language": language,
         "Authorization": 'Bearer '+ token
     },
 });

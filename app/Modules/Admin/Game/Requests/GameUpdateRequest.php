@@ -2,19 +2,17 @@
 
 namespace App\Modules\Admin\Game\Requests;
 
-use Illuminate\Http\Request;
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class GameUpdateRequest
+class GameUpdateRequest extends FormRequest
 {
-    public function validate(Request $request)
+    public function rules(): array
     {
-        return $request->validate([
-            'id' => 'required',
-            'sort' => 'integer',
-            'game' => 'string',
-            'is_active' => 'integer',
-            'thumb' => 'nullable',
-            'translations' => 'array',
-        ]);
+        return [
+            'id' => ['required', Rule::exists('games', 'id')],
+            'game' => ['required', 'string'],
+            'translations' => ['required', 'array'],
+        ];
     }
 }

@@ -1,7 +1,8 @@
 <template>
     <label for="">{{ field.title }}</label>
     <select
-        v-model="field.value"
+        :value="modelValue"
+        @input="$emit('update:modelValue', $event.target.value)"
         class="form-select"
         id=""
     >
@@ -19,7 +20,7 @@
 <script>
 export default {
     name: "SelectList",
-    props: ['field'],
+    props: ['field', 'modelValue'],
 
 }
 </script>

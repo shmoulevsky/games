@@ -2,17 +2,17 @@
 
 namespace App\Modules\Admin\Game\Requests;
 
+
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Request;
 
 class GameStoreRequest extends FormRequest
 {
-    public function validate(Request $request)
+    public function rules(): array
     {
-        return $request->validate([
-            'id' => 'nullable',
-            'game' => 'string',
-            'translations' => 'array',
-        ]);
+        return [
+            'id' => ['nullable'],
+            'game' => ['required', 'string'],
+            'translations' => ['required', 'array'],
+        ];
     }
 }

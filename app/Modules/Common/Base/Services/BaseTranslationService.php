@@ -31,6 +31,8 @@ abstract class BaseTranslationService extends BaseService
     {
         foreach ($translations as $lang => $translationItem) {
 
+            if(empty($translationItem)) continue;
+
             $translation = $this->repositoryTranslation->find(
                 $lang,
                 $item->id

@@ -1,4 +1,5 @@
 import AppInfoService from '../../services/AppInfoService'
+import {loadLanguageAsync} from "laravel-vue-i18n";
 
 export default{
     actions :{
@@ -12,6 +13,8 @@ export default{
         setLanguage(ctx, language){
             ctx.commit('setLanguage', language);
             localStorage.setItem('language', language);
+            let current = state.info.languages.filter(item => (parseInt(item.id) === parseInt(language)));
+            loadLanguageAsync(current[0].code);
         }
     },
     mutations :{

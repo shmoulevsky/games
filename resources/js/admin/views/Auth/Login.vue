@@ -3,10 +3,7 @@
                 <div>
                     <h1 class="auth-title">Log in</h1>
                     <p class="auth-subtitle mb-5">Log in with your data that you entered during registration.</p>
-                    <div class="error-title">
-                        <span>{{loginErrors ?? ''}}</span>
-                    </div>
-
+                    <error-text :text="this.errors ?? ''"></error-text>
                     <form>
 
                         <div class="form-group position-relative has-icon-left mb-4">
@@ -40,23 +37,21 @@
 
 import AuthService from "../../services/AuthService";
 import axiosInstance from "../../services/axios";
+import ErrorText from "../Components/Form/ErrorText.vue";
 
 export default {
     name: "Login",
     data(){
         return{
             email : '',
+            errors : '',
             password : '',
             isError : false
         }
     },
     components: {
+        ErrorText
 
-    },
-    computed: {
-        loginErrors() {
-            return this.$store.getters.getLoginErrors;
-        }
     },
     methods : {
         login(){
@@ -64,7 +59,9 @@ export default {
             let form = new FormData();
             form.append('email', this.email);
             form.append('password', this.password);
-            this.$store.dispatch('login', form)
+            this.$store.dispatch('login', form).catch(error => {
+                this.errors = error;
+            })
         },
         validateEmail(value) {
             // if the field is empty
