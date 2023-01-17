@@ -18515,18 +18515,12 @@ var _hoisted_30 = {
   "class": "submenu-item"
 };
 var _hoisted_31 = {
-  href: ""
+  "class": "submenu-item"
 };
 var _hoisted_32 = {
   "class": "submenu-item"
 };
 var _hoisted_33 = {
-  href: ""
-};
-var _hoisted_34 = {
-  "class": "submenu-item"
-};
-var _hoisted_35 = {
   href: ""
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -18623,8 +18617,153 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
 
     _: 1 /* STABLE */
-  })])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_27, [_hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('Settings')), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('Countries')), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('Languages')), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_34, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('Main')), 1 /* TEXT */)])])])])])])]);
+  })])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_27, [_hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('Settings')), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    to: "/admin/countries"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('Countries')), 1 /* TEXT */)];
+    }),
+
+    _: 1 /* STABLE */
+  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    to: "/admin/languages"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('Languages')), 1 /* TEXT */)];
+    }),
+
+    _: 1 /* STABLE */
+  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('Main')), 1 /* TEXT */)])])])])])])]);
 }
+
+/***/ }),
+
+/***/ "./resources/js/admin/router/Admin/ArticleCategories.js":
+/*!**************************************************************!*\
+  !*** ./resources/js/admin/router/Admin/ArticleCategories.js ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _views_AdminPage_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../views/AdminPage.vue */ "./resources/js/admin/views/AdminPage.vue");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  path: 'article-categories',
+  component: _views_AdminPage_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+  props: true,
+  children: [{
+    name: 'admin.article-categories',
+    path: '',
+    props: true,
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_admin_views_Common_List_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../../views/Common/List.vue */ "./resources/js/admin/views/Common/List.vue"));
+    }
+  }, {
+    name: 'admin.article-categories.add',
+    path: 'add',
+    props: true,
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_admin_views_Content_ArticleCategories_Edit_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../../views/Content/ArticleCategories/Edit.vue */ "./resources/js/admin/views/Content/ArticleCategories/Edit.vue"));
+    }
+  }, {
+    name: 'admin.article-categories.edit',
+    path: 'edit/:id',
+    props: true,
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_admin_views_Content_ArticleCategories_Edit_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../../views/Content/ArticleCategories/Edit.vue */ "./resources/js/admin/views/Content/ArticleCategories/Edit.vue"));
+    }
+  }]
+});
+
+/***/ }),
+
+/***/ "./resources/js/admin/router/Admin/Articles.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/admin/router/Admin/Articles.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _views_AdminPage_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../views/AdminPage.vue */ "./resources/js/admin/views/AdminPage.vue");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  path: 'articles',
+  component: _views_AdminPage_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+  props: true,
+  children: [{
+    name: 'admin.articles',
+    path: '',
+    props: true,
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_admin_views_Common_List_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../../views/Common/List.vue */ "./resources/js/admin/views/Common/List.vue"));
+    }
+  }, {
+    name: 'admin.article.add',
+    path: 'add',
+    props: true,
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_admin_views_Content_Article_Edit_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../../views/Content/Article/Edit.vue */ "./resources/js/admin/views/Content/Article/Edit.vue"));
+    }
+  }, {
+    name: 'admin.article.edit',
+    path: 'edit/:id',
+    props: true,
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_admin_views_Content_Article_Edit_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../../views/Content/Article/Edit.vue */ "./resources/js/admin/views/Content/Article/Edit.vue"));
+    }
+  }]
+});
+
+/***/ }),
+
+/***/ "./resources/js/admin/router/Admin/Countries.js":
+/*!******************************************************!*\
+  !*** ./resources/js/admin/router/Admin/Countries.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _views_AdminPage_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../views/AdminPage.vue */ "./resources/js/admin/views/AdminPage.vue");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  path: 'countries',
+  component: _views_AdminPage_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+  props: true,
+  children: [{
+    name: 'admin.countries',
+    path: '',
+    props: true,
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_admin_views_Common_List_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../../views/Common/List.vue */ "./resources/js/admin/views/Common/List.vue"));
+    }
+  }, {
+    name: 'admin.country.add',
+    path: 'add',
+    props: true,
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_admin_views_Settings_Country_Edit_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../../views/Settings/Country/Edit.vue */ "./resources/js/admin/views/Settings/Country/Edit.vue"));
+    }
+  }, {
+    name: 'admin.country.edit',
+    path: 'edit/:id',
+    props: true,
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_admin_views_Settings_Country_Edit_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../../views/Settings/Country/Edit.vue */ "./resources/js/admin/views/Settings/Country/Edit.vue"));
+    }
+  }]
+});
 
 /***/ }),
 
@@ -18652,6 +18791,49 @@ __webpack_require__.r(__webpack_exports__);
     props: true,
     component: function component() {
       return __webpack_require__.e(/*! import() */ "resources_js_admin_views_Dashboard_Index_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../../views/Dashboard/Index.vue */ "./resources/js/admin/views/Dashboard/Index.vue"));
+    }
+  }]
+});
+
+/***/ }),
+
+/***/ "./resources/js/admin/router/Admin/GameCategories.js":
+/*!***********************************************************!*\
+  !*** ./resources/js/admin/router/Admin/GameCategories.js ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _views_AdminPage_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../views/AdminPage.vue */ "./resources/js/admin/views/AdminPage.vue");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  path: 'game-categories',
+  component: _views_AdminPage_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+  props: true,
+  children: [{
+    name: 'admin.game-categories',
+    path: '',
+    props: true,
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_admin_views_Common_List_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../../views/Common/List.vue */ "./resources/js/admin/views/Common/List.vue"));
+    }
+  }, {
+    name: 'admin.game-categories.add',
+    path: 'add',
+    props: true,
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_admin_views_Content_GameCategories_Edit_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../../views/Content/GameCategories/Edit.vue */ "./resources/js/admin/views/Content/GameCategories/Edit.vue"));
+    }
+  }, {
+    name: 'admin.game-categories.edit',
+    path: 'edit/:id',
+    props: true,
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_admin_views_Content_GameCategories_Edit_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../../views/Content/GameCategories/Edit.vue */ "./resources/js/admin/views/Content/GameCategories/Edit.vue"));
     }
   }]
 });
@@ -18687,14 +18869,143 @@ __webpack_require__.r(__webpack_exports__);
     path: 'add',
     props: true,
     component: function component() {
-      return __webpack_require__.e(/*! import() */ "resources_js_admin_views_Games_Edit_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../../views/Games/Edit.vue */ "./resources/js/admin/views/Games/Edit.vue"));
+      return __webpack_require__.e(/*! import() */ "resources_js_admin_views_Content_Games_Edit_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../../views/Content/Games/Edit.vue */ "./resources/js/admin/views/Content/Games/Edit.vue"));
     }
   }, {
     name: 'admin.game.edit',
     path: 'edit/:id',
     props: true,
     component: function component() {
-      return __webpack_require__.e(/*! import() */ "resources_js_admin_views_Games_Edit_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../../views/Games/Edit.vue */ "./resources/js/admin/views/Games/Edit.vue"));
+      return __webpack_require__.e(/*! import() */ "resources_js_admin_views_Content_Games_Edit_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../../views/Content/Games/Edit.vue */ "./resources/js/admin/views/Content/Games/Edit.vue"));
+    }
+  }]
+});
+
+/***/ }),
+
+/***/ "./resources/js/admin/router/Admin/Languages.js":
+/*!******************************************************!*\
+  !*** ./resources/js/admin/router/Admin/Languages.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _views_AdminPage_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../views/AdminPage.vue */ "./resources/js/admin/views/AdminPage.vue");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  path: 'languages',
+  component: _views_AdminPage_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+  props: true,
+  children: [{
+    name: 'admin.languages',
+    path: '',
+    props: true,
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_admin_views_Common_List_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../../views/Common/List.vue */ "./resources/js/admin/views/Common/List.vue"));
+    }
+  }, {
+    name: 'admin.language.add',
+    path: 'add',
+    props: true,
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_admin_views_Settings_Language_Edit_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../../views/Settings/Language/Edit.vue */ "./resources/js/admin/views/Settings/Language/Edit.vue"));
+    }
+  }, {
+    name: 'admin.language.edit',
+    path: 'edit/:id',
+    props: true,
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_admin_views_Settings_Language_Edit_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../../views/Settings/Language/Edit.vue */ "./resources/js/admin/views/Settings/Language/Edit.vue"));
+    }
+  }]
+});
+
+/***/ }),
+
+/***/ "./resources/js/admin/router/Admin/PageCategories.js":
+/*!***********************************************************!*\
+  !*** ./resources/js/admin/router/Admin/PageCategories.js ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _views_AdminPage_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../views/AdminPage.vue */ "./resources/js/admin/views/AdminPage.vue");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  path: 'page-categories',
+  component: _views_AdminPage_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+  props: true,
+  children: [{
+    name: 'admin.page-categories',
+    path: '',
+    props: true,
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_admin_views_Common_List_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../../views/Common/List.vue */ "./resources/js/admin/views/Common/List.vue"));
+    }
+  }, {
+    name: 'admin.page-categories.add',
+    path: 'add',
+    props: true,
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_admin_views_Content_PageCategories_Edit_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../../views/Content/PageCategories/Edit.vue */ "./resources/js/admin/views/Content/PageCategories/Edit.vue"));
+    }
+  }, {
+    name: 'admin.page-categories.edit',
+    path: 'edit/:id',
+    props: true,
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_admin_views_Content_PageCategories_Edit_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../../views/Content/PageCategories/Edit.vue */ "./resources/js/admin/views/Content/PageCategories/Edit.vue"));
+    }
+  }]
+});
+
+/***/ }),
+
+/***/ "./resources/js/admin/router/Admin/Pages.js":
+/*!**************************************************!*\
+  !*** ./resources/js/admin/router/Admin/Pages.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _views_AdminPage_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../views/AdminPage.vue */ "./resources/js/admin/views/AdminPage.vue");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  path: 'pages',
+  component: _views_AdminPage_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+  props: true,
+  children: [{
+    name: 'admin.pages',
+    path: '',
+    props: true,
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_admin_views_Common_List_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../../views/Common/List.vue */ "./resources/js/admin/views/Common/List.vue"));
+    }
+  }, {
+    name: 'admin.page.add',
+    path: 'add',
+    props: true,
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_admin_views_Content_Page_Edit_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../../views/Content/Page/Edit.vue */ "./resources/js/admin/views/Content/Page/Edit.vue"));
+    }
+  }, {
+    name: 'admin.page.edit',
+    path: 'edit/:id',
+    props: true,
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_admin_views_Content_Page_Edit_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../../views/Content/Page/Edit.vue */ "./resources/js/admin/views/Content/Page/Edit.vue"));
     }
   }]
 });
@@ -18834,6 +19145,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Admin_Dashboard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Admin/Dashboard */ "./resources/js/admin/router/Admin/Dashboard.js");
 /* harmony import */ var _Admin_Games__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Admin/Games */ "./resources/js/admin/router/Admin/Games.js");
 /* harmony import */ var _Admin_Settings__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Admin/Settings */ "./resources/js/admin/router/Admin/Settings.js");
+/* harmony import */ var _Admin_GameCategories__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Admin/GameCategories */ "./resources/js/admin/router/Admin/GameCategories.js");
+/* harmony import */ var _Admin_ArticleCategories__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Admin/ArticleCategories */ "./resources/js/admin/router/Admin/ArticleCategories.js");
+/* harmony import */ var _Admin_Pages__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Admin/Pages */ "./resources/js/admin/router/Admin/Pages.js");
+/* harmony import */ var _Admin_Articles__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Admin/Articles */ "./resources/js/admin/router/Admin/Articles.js");
+/* harmony import */ var _Admin_PageCategories__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Admin/PageCategories */ "./resources/js/admin/router/Admin/PageCategories.js");
+/* harmony import */ var _Admin_Countries__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Admin/Countries */ "./resources/js/admin/router/Admin/Countries.js");
+/* harmony import */ var _Admin_Languages__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./Admin/Languages */ "./resources/js/admin/router/Admin/Languages.js");
+
+
+
+
+
+
+
 
 
 
@@ -18843,7 +19168,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ([{
   path: '/admin',
   component: _views_Admin_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-  children: [_Admin_Dashboard__WEBPACK_IMPORTED_MODULE_3__["default"], _Admin_Users__WEBPACK_IMPORTED_MODULE_0__["default"], _Admin_Games__WEBPACK_IMPORTED_MODULE_4__["default"], _Admin_Settings__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  children: [_Admin_Dashboard__WEBPACK_IMPORTED_MODULE_3__["default"], _Admin_Users__WEBPACK_IMPORTED_MODULE_0__["default"], _Admin_Games__WEBPACK_IMPORTED_MODULE_4__["default"], _Admin_ArticleCategories__WEBPACK_IMPORTED_MODULE_7__["default"], _Admin_Articles__WEBPACK_IMPORTED_MODULE_9__["default"], _Admin_GameCategories__WEBPACK_IMPORTED_MODULE_6__["default"], _Admin_PageCategories__WEBPACK_IMPORTED_MODULE_10__["default"], _Admin_Pages__WEBPACK_IMPORTED_MODULE_8__["default"], _Admin_Settings__WEBPACK_IMPORTED_MODULE_5__["default"], _Admin_Countries__WEBPACK_IMPORTED_MODULE_11__["default"], _Admin_Languages__WEBPACK_IMPORTED_MODULE_12__["default"], {
     path: 'login',
     name: 'login',
     component: _views_Auth_Login_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
@@ -50646,7 +50971,7 @@ const toFiniteNumber = (value, defaultValue) => {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"lang_en_json":1,"lang_ru_json":1,"resources_js_admin_views_Common_List_vue":1,"resources_js_admin_views_Users_Edit_vue":1,"resources_js_admin_views_Dashboard_Index_vue":1,"resources_js_admin_views_Games_Edit_vue":1,"resources_js_admin_views_Filemanager_Filemanager_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"lang_en_json":1,"lang_ru_json":1,"resources_js_admin_views_Common_List_vue":1,"resources_js_admin_views_Users_Edit_vue":1,"resources_js_admin_views_Dashboard_Index_vue":1,"resources_js_admin_views_Content_Games_Edit_vue":1,"resources_js_admin_views_Filemanager_Filemanager_vue":1,"resources_js_admin_views_Content_GameCategories_Edit_vue":1,"resources_js_admin_views_Content_ArticleCategories_Edit_vue":1,"resources_js_admin_views_Content_Page_Edit_vue":1,"resources_js_admin_views_Content_Article_Edit_vue":1,"resources_js_admin_views_Content_PageCategories_Edit_vue":1,"resources_js_admin_views_Settings_Country_Edit_vue":1,"resources_js_admin_views_Settings_Language_Edit_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

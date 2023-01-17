@@ -104,10 +104,14 @@
                         </a>
                         <ul class="submenu ">
                             <li class="submenu-item ">
-                                <a href="">{{ $t('Countries') }}</a>
+                                <router-link to="/admin/countries" >
+                                    {{ $t('Countries') }}
+                                </router-link>
                             </li>
                             <li class="submenu-item ">
-                                <a href="">{{ $t('Languages') }}</a>
+                                <router-link to="/admin/languages" >
+                                    {{ $t('Languages') }}
+                                </router-link>
                             </li>
                             <li class="submenu-item ">
                                 <a href="">{{ $t('Main') }}</a>

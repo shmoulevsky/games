@@ -12,6 +12,7 @@ class GameResource extends JsonResource
             'id' => $this->id,
             'game' => $this->game,
             'thumb' => $this->thumb,
+            'category_id' => $this->category_id,
             'translations' => $this->translations->keyBy('language_id'),
         ];
     }

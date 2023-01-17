@@ -9,7 +9,7 @@ class GameCategoryCollection extends ResourceCollection
     public function toArray($request)
     {
         return [
-            'data' => GameShortResource::collection($this->collection),
+            'data' => GameCategoryShortResource::collection($this->collection),
             'links' => [
                 'self' => 'link-value',
             ],

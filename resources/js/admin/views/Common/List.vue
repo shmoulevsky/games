@@ -4,7 +4,6 @@
 			<table-admin
 				:route_create_name="add"
 				:route_edit_name="edit"
-				:columns="columns"
 				:items="items.data"
 				:headers="headers"
                 @updateItems="getItems"
@@ -25,7 +24,7 @@ import DataService from "../../services/DataService";
 import TableAdmin from "../Components/Table/TableAdmin";
 import VuePagination from "../Components/Table/Pagination";
 import tableConfig from "../../config/TableConfig";
-import axiosInstance from "../../services/axios";
+import {camelize} from "../../../common/utils";
 
 export default {
 	data() {
@@ -72,7 +71,9 @@ export default {
 		},
 		setDefault() {
 
-            let table = window.location.pathname.split("/").pop();
+            let url = window.location.pathname.split("/").pop();
+            let table = camelize(url).replace('-','');
+
             this.title = tableConfig[table].title ?? [];
             this.headers = tableConfig[table].headers ?? [];
             this.offset = tableConfig[table].offset ?? [];
@@ -81,7 +82,7 @@ export default {
             this.edit = tableConfig[table].edit ?? [];
             this.$store.dispatch('setTitle', this.title);
 
-            DataService.url = table;
+            DataService.url = url;
             this.getItems();
 
 

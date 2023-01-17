@@ -15,14 +15,14 @@ export default {
             name: 'admin.game.add',
             path: 'add',
             props: true,
-            component: () => import("../../views/Games/Edit.vue"),
+            component: () => import("../../views/Content/Games/Edit.vue"),
 
         },
         {
             name: 'admin.game.edit',
             path: 'edit/:id',
             props: true,
-            component: () => import("../../views/Games/Edit.vue"),
+            component: () => import("../../views/Content/Games/Edit.vue"),
 
         }
     ]

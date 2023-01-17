@@ -9,4 +9,9 @@ use Kalnoy\Nestedset\NodeTrait;
 class GameCategory extends Model
 {
     use HasFactory, NodeTrait;
+
+    public function translations()
+    {
+        return $this->hasMany(GameCategoryTranslation::class, 'game_category_id', 'id');
+    }
 }

@@ -14,7 +14,7 @@ class GameCategoryShortResource extends JsonResource
             'created_at' => $this->created_at->format('d.m.Y, H:i:s'),
             'thumb' => $this->thumb,
             'url' => $this->url,
-            'category' => $this->category_id,
+            'parent_id' => $this->parent_id,
         ];
     }
 }

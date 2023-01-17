@@ -15,7 +15,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_Table_TableAdmin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Components/Table/TableAdmin */ "./resources/js/admin/views/Components/Table/TableAdmin.vue");
 /* harmony import */ var _Components_Table_Pagination__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Components/Table/Pagination */ "./resources/js/admin/views/Components/Table/Pagination.vue");
 /* harmony import */ var _config_TableConfig__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../config/TableConfig */ "./resources/js/admin/config/TableConfig.js");
-/* harmony import */ var _services_axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/axios */ "./resources/js/admin/services/axios.js");
+/* harmony import */ var _common_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../common/utils */ "./resources/js/common/utils.js");
 
 
 
@@ -60,7 +60,8 @@ __webpack_require__.r(__webpack_exports__);
     },
     setDefault: function setDefault() {
       var _tableConfig$table$ti, _tableConfig$table$he, _tableConfig$table$of, _tableConfig$table$pe, _tableConfig$table$ad, _tableConfig$table$ed;
-      var table = window.location.pathname.split("/").pop();
+      var url = window.location.pathname.split("/").pop();
+      var table = (0,_common_utils__WEBPACK_IMPORTED_MODULE_4__.camelize)(url).replace('-', '');
       this.title = (_tableConfig$table$ti = _config_TableConfig__WEBPACK_IMPORTED_MODULE_3__["default"][table].title) !== null && _tableConfig$table$ti !== void 0 ? _tableConfig$table$ti : [];
       this.headers = (_tableConfig$table$he = _config_TableConfig__WEBPACK_IMPORTED_MODULE_3__["default"][table].headers) !== null && _tableConfig$table$he !== void 0 ? _tableConfig$table$he : [];
       this.offset = (_tableConfig$table$of = _config_TableConfig__WEBPACK_IMPORTED_MODULE_3__["default"][table].offset) !== null && _tableConfig$table$of !== void 0 ? _tableConfig$table$of : [];
@@ -68,7 +69,7 @@ __webpack_require__.r(__webpack_exports__);
       this.add = (_tableConfig$table$ad = _config_TableConfig__WEBPACK_IMPORTED_MODULE_3__["default"][table].add) !== null && _tableConfig$table$ad !== void 0 ? _tableConfig$table$ad : [];
       this.edit = (_tableConfig$table$ed = _config_TableConfig__WEBPACK_IMPORTED_MODULE_3__["default"][table].edit) !== null && _tableConfig$table$ed !== void 0 ? _tableConfig$table$ed : [];
       this.$store.dispatch('setTitle', this.title);
-      _services_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].url = table;
+      _services_DataService__WEBPACK_IMPORTED_MODULE_0__["default"].url = url;
       this.getItems();
     }
   },
@@ -209,11 +210,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_table_admin, {
     route_create_name: $data.add,
     route_edit_name: $data.edit,
-    columns: _ctx.columns,
     items: $data.items.data,
     headers: $data.headers,
     onUpdateItems: $options.getItems
-  }, null, 8 /* PROPS */, ["route_create_name", "route_edit_name", "columns", "items", "headers", "onUpdateItems"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_vue_pagination, {
+  }, null, 8 /* PROPS */, ["route_create_name", "route_edit_name", "items", "headers", "onUpdateItems"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_vue_pagination, {
     pagination: (_$data$items$meta = $data.items.meta) !== null && _$data$items$meta !== void 0 ? _$data$items$meta : {},
     onPaginate: $options.getItems,
     offset: $data.per_page
@@ -420,13 +420,237 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _tables_users__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./tables/users */ "./resources/js/admin/config/tables/users.js");
 /* harmony import */ var _tables_games__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tables/games */ "./resources/js/admin/config/tables/games.js");
+/* harmony import */ var _tables_game_categories__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./tables/game-categories */ "./resources/js/admin/config/tables/game-categories.js");
+/* harmony import */ var _tables_pages__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./tables/pages */ "./resources/js/admin/config/tables/pages.js");
+/* harmony import */ var _tables_articles__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./tables/articles */ "./resources/js/admin/config/tables/articles.js");
+/* harmony import */ var _tables_article_categories__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./tables/article-categories */ "./resources/js/admin/config/tables/article-categories.js");
+/* harmony import */ var _tables_page_categories__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./tables/page-categories */ "./resources/js/admin/config/tables/page-categories.js");
+/* harmony import */ var _tables_languages__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./tables/languages */ "./resources/js/admin/config/tables/languages.js");
+/* harmony import */ var _tables_countries__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./tables/countries */ "./resources/js/admin/config/tables/countries.js");
+/* harmony import */ var _tables_user_subscriptions__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./tables/user-subscriptions */ "./resources/js/admin/config/tables/user-subscriptions.js");
+
+
+
+
+
+
+
+
 
 
 var tableConfig = {
   users: _tables_users__WEBPACK_IMPORTED_MODULE_0__["default"],
-  games: _tables_games__WEBPACK_IMPORTED_MODULE_1__["default"]
+  userSubscriptions: _tables_user_subscriptions__WEBPACK_IMPORTED_MODULE_9__["default"],
+  games: _tables_games__WEBPACK_IMPORTED_MODULE_1__["default"],
+  pages: _tables_pages__WEBPACK_IMPORTED_MODULE_3__["default"],
+  articles: _tables_articles__WEBPACK_IMPORTED_MODULE_4__["default"],
+  gameCategories: _tables_game_categories__WEBPACK_IMPORTED_MODULE_2__["default"],
+  articleCategories: _tables_article_categories__WEBPACK_IMPORTED_MODULE_5__["default"],
+  pageCategories: _tables_page_categories__WEBPACK_IMPORTED_MODULE_6__["default"],
+  languages: _tables_languages__WEBPACK_IMPORTED_MODULE_7__["default"],
+  countries: _tables_countries__WEBPACK_IMPORTED_MODULE_8__["default"]
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (tableConfig);
+
+/***/ }),
+
+/***/ "./resources/js/admin/config/tables/article-categories.js":
+/*!****************************************************************!*\
+  !*** ./resources/js/admin/config/tables/article-categories.js ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! laravel-vue-i18n */ "./node_modules/laravel-vue-i18n/dist/index.js");
+
+var articleCategories = {
+  title: (0,laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__.trans)('Article categories list'),
+  per_page: 10,
+  items: {},
+  headers: [{
+    title: "ID",
+    code: "id",
+    dir: "desc",
+    is_sort: true
+  }, {
+    title: (0,laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__.trans)("Title"),
+    code: "title",
+    type: "url",
+    url: "url",
+    dir: "asc",
+    is_sort: true
+  }, {
+    title: (0,laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__.trans)("Picture"),
+    code: "thumb",
+    type: "img",
+    dir: "asc",
+    is_sort: false
+  }, {
+    title: (0,laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__.trans)("Category"),
+    code: "parent_id",
+    dir: "asc",
+    is_sort: false
+  }, {
+    title: (0,laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__.trans)("Created at"),
+    code: "created_at",
+    dir: "asc",
+    is_sort: true
+  }],
+  add: "admin.article-categories.add",
+  edit: "admin.article-categories.edit"
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (articleCategories);
+
+/***/ }),
+
+/***/ "./resources/js/admin/config/tables/articles.js":
+/*!******************************************************!*\
+  !*** ./resources/js/admin/config/tables/articles.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! laravel-vue-i18n */ "./node_modules/laravel-vue-i18n/dist/index.js");
+
+var articles = {
+  title: (0,laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__.trans)('Articles'),
+  per_page: 10,
+  items: {},
+  headers: [{
+    title: "ID",
+    code: "id",
+    dir: "desc",
+    is_sort: true
+  }, {
+    title: (0,laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__.trans)("Title"),
+    code: "title",
+    type: "url",
+    url: "url",
+    dir: "asc",
+    is_sort: true
+  }, {
+    title: (0,laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__.trans)("Picture"),
+    code: "thumb",
+    type: "img",
+    dir: "asc",
+    is_sort: false
+  }, {
+    title: (0,laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__.trans)("Category"),
+    code: "category",
+    dir: "asc",
+    is_sort: false
+  }, {
+    title: (0,laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__.trans)("Created at"),
+    code: "created_at",
+    dir: "asc",
+    is_sort: true
+  }],
+  add: "admin.article.add",
+  edit: "admin.article.edit"
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (articles);
+
+/***/ }),
+
+/***/ "./resources/js/admin/config/tables/countries.js":
+/*!*******************************************************!*\
+  !*** ./resources/js/admin/config/tables/countries.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! laravel-vue-i18n */ "./node_modules/laravel-vue-i18n/dist/index.js");
+
+var countries = {
+  title: (0,laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__.trans)('Countries list'),
+  per_page: 10,
+  items: {},
+  headers: [{
+    title: "ID",
+    code: "id",
+    dir: "desc",
+    is_sort: true
+  }, {
+    title: (0,laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__.trans)("Title"),
+    code: "title",
+    dir: "asc",
+    is_sort: true
+  }, {
+    title: (0,laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__.trans)("Code"),
+    code: "code",
+    dir: "asc",
+    is_sort: false
+  }, {
+    title: (0,laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__.trans)("Created at"),
+    code: "created_at",
+    dir: "asc",
+    is_sort: true
+  }],
+  add: "admin.country.add",
+  edit: "admin.country.edit"
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (countries);
+
+/***/ }),
+
+/***/ "./resources/js/admin/config/tables/game-categories.js":
+/*!*************************************************************!*\
+  !*** ./resources/js/admin/config/tables/game-categories.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! laravel-vue-i18n */ "./node_modules/laravel-vue-i18n/dist/index.js");
+
+var gameCategories = {
+  title: (0,laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__.trans)('Game categories list'),
+  per_page: 10,
+  items: {},
+  headers: [{
+    title: "ID",
+    code: "id",
+    dir: "desc",
+    is_sort: true
+  }, {
+    title: (0,laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__.trans)("Title"),
+    code: "title",
+    type: "url",
+    url: "url",
+    dir: "asc",
+    is_sort: true
+  }, {
+    title: (0,laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__.trans)("Picture"),
+    code: "thumb",
+    type: "img",
+    dir: "asc",
+    is_sort: false
+  }, {
+    title: (0,laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__.trans)("Category"),
+    code: "parent_id",
+    dir: "asc",
+    is_sort: false
+  }, {
+    title: (0,laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__.trans)("Created at"),
+    code: "created_at",
+    dir: "asc",
+    is_sort: true
+  }],
+  add: "admin.game-categories.add",
+  edit: "admin.game-categories.edit"
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (gameCategories);
 
 /***/ }),
 
@@ -479,6 +703,213 @@ var games = {
   edit: "admin.game.edit"
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (games);
+
+/***/ }),
+
+/***/ "./resources/js/admin/config/tables/languages.js":
+/*!*******************************************************!*\
+  !*** ./resources/js/admin/config/tables/languages.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! laravel-vue-i18n */ "./node_modules/laravel-vue-i18n/dist/index.js");
+
+var languages = {
+  title: (0,laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__.trans)('Languages list'),
+  per_page: 10,
+  items: {},
+  headers: [{
+    title: "ID",
+    code: "id",
+    dir: "desc",
+    is_sort: true
+  }, {
+    title: (0,laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__.trans)("Title"),
+    code: "title",
+    dir: "asc",
+    is_sort: true
+  }, {
+    title: (0,laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__.trans)("Code"),
+    code: "code",
+    dir: "asc",
+    is_sort: false
+  }, {
+    title: (0,laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__.trans)("Created at"),
+    code: "created_at",
+    dir: "asc",
+    is_sort: true
+  }],
+  add: "admin.language.add",
+  edit: "admin.language.edit"
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (languages);
+
+/***/ }),
+
+/***/ "./resources/js/admin/config/tables/page-categories.js":
+/*!*************************************************************!*\
+  !*** ./resources/js/admin/config/tables/page-categories.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! laravel-vue-i18n */ "./node_modules/laravel-vue-i18n/dist/index.js");
+
+var pageCategories = {
+  title: (0,laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__.trans)('Page categories list'),
+  per_page: 10,
+  items: {},
+  headers: [{
+    title: "ID",
+    code: "id",
+    dir: "desc",
+    is_sort: true
+  }, {
+    title: (0,laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__.trans)("Title"),
+    code: "title",
+    type: "url",
+    url: "url",
+    dir: "asc",
+    is_sort: true
+  }, {
+    title: (0,laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__.trans)("Picture"),
+    code: "thumb",
+    type: "img",
+    dir: "asc",
+    is_sort: false
+  }, {
+    title: (0,laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__.trans)("Category"),
+    code: "parent_id",
+    dir: "asc",
+    is_sort: false
+  }, {
+    title: (0,laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__.trans)("Created at"),
+    code: "created_at",
+    dir: "asc",
+    is_sort: true
+  }],
+  add: "admin.page-categories.add",
+  edit: "admin.page-categories.edit"
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (pageCategories);
+
+/***/ }),
+
+/***/ "./resources/js/admin/config/tables/pages.js":
+/*!***************************************************!*\
+  !*** ./resources/js/admin/config/tables/pages.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! laravel-vue-i18n */ "./node_modules/laravel-vue-i18n/dist/index.js");
+
+var pages = {
+  title: (0,laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__.trans)('Pages list'),
+  per_page: 10,
+  items: {},
+  headers: [{
+    title: "ID",
+    code: "id",
+    dir: "desc",
+    is_sort: true
+  }, {
+    title: (0,laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__.trans)("Title"),
+    code: "title",
+    type: "url",
+    url: "url",
+    dir: "asc",
+    is_sort: true
+  }, {
+    title: (0,laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__.trans)("Picture"),
+    code: "thumb",
+    type: "img",
+    dir: "asc",
+    is_sort: false
+  }, {
+    title: (0,laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__.trans)("Category"),
+    code: "category",
+    dir: "asc",
+    is_sort: false
+  }, {
+    title: (0,laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__.trans)("Created at"),
+    code: "created_at",
+    dir: "asc",
+    is_sort: true
+  }],
+  add: "admin.page.add",
+  edit: "admin.page.edit"
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (pages);
+
+/***/ }),
+
+/***/ "./resources/js/admin/config/tables/user-subscriptions.js":
+/*!****************************************************************!*\
+  !*** ./resources/js/admin/config/tables/user-subscriptions.js ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! laravel-vue-i18n */ "./node_modules/laravel-vue-i18n/dist/index.js");
+
+var usersSubscriptions = {
+  title: (0,laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__.trans)('User list'),
+  per_page: 2,
+  items: {},
+  headers: [{
+    title: "ID",
+    code: "id",
+    dir: "desc",
+    is_sort: true
+  }, {
+    title: (0,laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__.trans)("Created at"),
+    code: "created_at",
+    dir: "asc",
+    is_sort: false
+  }, {
+    title: (0,laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__.trans)("From"),
+    code: "from",
+    dir: "asc",
+    is_sort: false
+  }, {
+    title: (0,laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__.trans)("Till"),
+    code: "till",
+    dir: "asc",
+    is_sort: false
+  }, {
+    title: (0,laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__.trans)("E-mail"),
+    code: "email",
+    dir: "asc",
+    is_sort: false
+  }, {
+    title: (0,laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__.trans)("Name"),
+    code: "name",
+    dir: "asc",
+    is_sort: false
+  }, {
+    title: (0,laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__.trans)("Last name"),
+    code: "lastname",
+    dir: "asc",
+    is_sort: false
+  }],
+  add: "admin.user-subscriptions.add",
+  edit: "admin.user-subscriptions.edit"
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (usersSubscriptions);
 
 /***/ }),
 
@@ -584,6 +1015,24 @@ var DataService = /*#__PURE__*/function () {
   return DataService;
 }();
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new DataService());
+
+/***/ }),
+
+/***/ "./resources/js/common/utils.js":
+/*!**************************************!*\
+  !*** ./resources/js/common/utils.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "camelize": () => (/* binding */ camelize)
+/* harmony export */ });
+function camelize(str) {
+  return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
+    return index === 0 ? word.toLowerCase() : word.toUpperCase();
+  }).replace(/\s+/g, '');
+}
 
 /***/ }),
 
