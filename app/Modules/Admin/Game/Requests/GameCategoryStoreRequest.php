@@ -11,7 +11,6 @@ class GameCategoryStoreRequest extends FormRequest
     {
         return [
             'id' => ['nullable'],
-            'game' => ['required', 'string'],
             'translations' => ['required', 'array'],
         ];
     }

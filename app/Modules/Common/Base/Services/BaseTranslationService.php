@@ -4,6 +4,9 @@ namespace App\Modules\Common\Base\Services;
 
 
 
+use App\Modules\Common\Url\Services\UrlPathService;
+use App\Modules\Common\Url\Services\UrlService;
+
 abstract class BaseTranslationService extends BaseService
 {
     protected string $modelTranslationClass;
@@ -32,6 +35,10 @@ abstract class BaseTranslationService extends BaseService
         foreach ($translations as $lang => $translationItem) {
 
             if(empty($translationItem)) continue;
+
+            if(isset($translationItem['seo_url'])){
+                $translationItem['seo_url'] = strtolower(str_ireplace(' ','-', $translationItem['seo_url']));
+            }
 
             $translation = $this->repositoryTranslation->find(
                 $lang,

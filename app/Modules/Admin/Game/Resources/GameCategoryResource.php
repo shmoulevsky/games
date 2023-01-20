@@ -10,7 +10,7 @@ class GameCategoryResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'game' => $this->game,
+            'parent_id' => $this->parent_id,
             'thumb' => $this->thumb,
             'translations' => $this->translations->keyBy('language_id'),
         ];

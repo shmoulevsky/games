@@ -17,6 +17,13 @@ class UrlService extends BaseService
 
     protected $modelClass = Url::class;
     protected $repositoryClass = UrlRepository::class;
+    private UrlPathService $urlPathService;
+
+    public function __construct(UrlPathService $urlPathService)
+    {
+        parent::__construct();
+        $this->urlPathService = $urlPathService;
+    }
 
     public function createOrUpdate($dto) : Url
     {

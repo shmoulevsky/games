@@ -32,7 +32,7 @@ class GameCategoryController
 
     public function index(Request $request)
     {
-        $params = ParamListDTO::fromRequest($request, 'created_at', 'desc');
+        $params = ParamListDTO::fromRequest($request, '_lft', 'asc');
         $games = $this->gameCategoryRepository->all(
             $params->getSort(),
             $params->getDir(),
@@ -44,7 +44,7 @@ class GameCategoryController
 
     public function select(Request $request)
     {
-        $params = ParamListDTO::fromRequest($request, 'created_at', 'desc');
+        $params = ParamListDTO::fromRequest($request, '_lft', 'asc');
         $games = $this->gameCategoryRepository->all(
             $params->getSort(),
             $params->getDir(),
@@ -64,7 +64,7 @@ class GameCategoryController
     {
         $dto = new GameCategoryDTO(
             null,
-            $request->game,
+            $request->parent_id,
             $request->thumb,
             $request->translations,
             CountryService::getCurrent(),
@@ -84,7 +84,7 @@ class GameCategoryController
 
         $dto = new GameCategoryDTO(
             $request->id,
-            $request->game,
+            $request->parent_id,
             $request->thumb,
             $request->translations,
             CountryService::getCurrent(),

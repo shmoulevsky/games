@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 
+use App\Modules\Admin\Game\Models\GameCategory;
+
 class GameCategorySeeder extends BaseSeeder
 {
     /**
@@ -77,6 +79,16 @@ class GameCategorySeeder extends BaseSeeder
         $this->service->make('game_categories', $list);
         $this->service->make('game_category_translations', $translations);
         $this->service->make('urls', $urls);
+
+        $cats = GameCategory::all();
+
+        foreach ($cats as $key => $cat){
+            if($cat->id === 1) continue;
+            $cat->parent_id = 1;
+            $cat->save();
+        }
+
+        GameCategory::fixTree();
 
 
     }

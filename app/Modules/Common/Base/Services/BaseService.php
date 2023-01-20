@@ -3,6 +3,9 @@
 namespace App\Modules\Common\Base\Services;
 
 
+use App\Modules\Common\Url\Services\UrlPathService;
+use App\Modules\Common\Url\Services\UrlService;
+
 abstract class BaseService
 {
     protected const DEFAULT_SORT = 100;
@@ -15,6 +18,8 @@ abstract class BaseService
 
     public function __construct()
     {
+        $this->urlPathService = app()->make(UrlPathService::class);
+
         if($this->modelClass) {
             $this->model = app()->make($this->modelClass);
         }

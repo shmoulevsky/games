@@ -10,7 +10,7 @@ class GameCategorySelectResource extends JsonResource
     {
         return [
             'value' => $this->id,
-            'text' => $this->title,
+            'text' =>  str_repeat('-',$this->depth).$this->title,
         ];
     }
 }

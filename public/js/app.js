@@ -23063,12 +23063,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     setLanguage: function setLanguage(ctx, language) {
       ctx.commit('setLanguage', language);
       localStorage.setItem('language', language);
-      var current = state.info.languages.filter(function (item) {
-        return parseInt(item.id) === parseInt(language);
-      });
-      (0,laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_1__.loadLanguageAsync)(current[0].code);
+      //let current = state.getLanguages.filter(item => (parseInt(item.id) === parseInt(language)));
+      //loadLanguageAsync(current[0].code);
     }
   },
+
   mutations: {
     setInfo: function setInfo(state, info) {
       state.info = info;

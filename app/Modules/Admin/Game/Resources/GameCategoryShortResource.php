@@ -10,7 +10,7 @@ class GameCategoryShortResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'title' => $this->title,
+            'title' => str_repeat('-',$this->depth).$this->title,
             'created_at' => $this->created_at->format('d.m.Y, H:i:s'),
             'thumb' => $this->thumb,
             'url' => $this->url,

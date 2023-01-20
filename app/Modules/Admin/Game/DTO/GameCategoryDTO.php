@@ -6,7 +6,7 @@ class GameCategoryDTO
 {
     public function __construct(
         public ?int $id,
-        public ?string $game,
+        public ?string $parentId,
         public ?string $thumb,
         public ?array $translations,
         public ?int $countryId,

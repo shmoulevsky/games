@@ -11,7 +11,6 @@ class GameCategoryUpdateRequest extends FormRequest
     {
         return [
             'id' => ['required', Rule::exists('game_categories', 'id')],
-            'game' => ['required', 'string'],
             'translations' => ['required', 'array'],
         ];
     }
