@@ -5,16 +5,16 @@ SHELL=/bin/bash -e
 -include ./docker/.env
 
 build: ## Билд проекта
-	@cd ./docker && docker-compose build --build-arg UID=$$(id -u) --build-arg GID=$$(id -g)
+	@cd ./docker && docker compose build --build-arg UID=$$(id -u) --build-arg GID=$$(id -g)
 
 prepare-app: composer-update key-generate jwt-prepare laravel-manager-prepare db-fresh## Первый запуск
 	@echo -e "Make: ${PROJECT_NAME} is completed. \n"
 
 up: ## Запуск проекта
-	@cd ./docker && docker-compose up
+	@cd ./docker && docker compose up
 
 down: ## Остановка проекта
-	@cd ./docker && docker-compose down
+	@cd ./docker && docker compose down
 
 restart: down up
 

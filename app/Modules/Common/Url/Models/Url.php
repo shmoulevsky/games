@@ -17,7 +17,8 @@ class Url extends Model
     public const NOT_FOUND = 'not_found';
 
     use HasFactory;
-    protected $fillable = ['url'];
+    protected $fillable = ['url', 'entity', 'entity_id', 'list', 'language_id'];
+    protected $casts = ['list' => 'json'];
 
 
 }

@@ -18,4 +18,11 @@ class SettingsRepository extends BaseRepository
             ->keyBy('key');
     }
 
+    public function getByKey($key)
+    {
+        return DB::table('settings')
+            ->where('key', $key)
+            ->first();
+    }
+
 }

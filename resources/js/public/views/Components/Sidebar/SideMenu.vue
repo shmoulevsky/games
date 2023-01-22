@@ -3,6 +3,11 @@
     <ul class="side-menu">
         <li v-for="(item, key) in menu">
             <router-link :to="{path : item.url}"><span>{{item.title}}</span></router-link>
+            <ul v-if="item.children" class="side-sub-menu">
+                <li v-for="(subItem, keySub) in item.children">
+                    <router-link :to="{path : subItem.url}"><span>{{subItem.title}}</span></router-link>
+                </li>
+            </ul>
         </li>
     </ul>
 </template>
@@ -37,6 +42,14 @@ export default {
     padding: 10px 0px;
     color: #222;
     font-size: 17px;
+    text-decoration: none;
+}
+
+.side-menu .side-sub-menu li a{
+    display: block;
+    padding: 3px 0px;
+    color: #222;
+    font-size: 16px;
     text-decoration: none;
 }
 

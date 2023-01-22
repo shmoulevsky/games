@@ -355,6 +355,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     prepareItem: function prepareItem() {
       var _this = this;
       this.id = this.$route.params.id;
+      this.is_copy = this.$route.params.is_copy;
       var translations = [];
       _services_DataService__WEBPACK_IMPORTED_MODULE_3__["default"].url = this.url;
       for (var key in this.languages) {
@@ -1006,6 +1007,11 @@ var DataService = /*#__PURE__*/function () {
           id: id
         }
       });
+    }
+  }, {
+    key: "get",
+    value: function get(url) {
+      return _axios__WEBPACK_IMPORTED_MODULE_0__["default"].get(url);
     }
   }]);
   return DataService;

@@ -11,6 +11,7 @@ import articles from "./Admin/Articles";
 import pageCategories from "./Admin/PageCategories";
 import countries from "./Admin/Countries";
 import languages from "./Admin/Languages";
+import menu from "./Admin/Menu";
 
 export default [{
     path: '/admin',
@@ -27,6 +28,7 @@ export default [{
         settings,
         countries,
         languages,
+        menu,
         {
             path: 'login',
             name: 'login',

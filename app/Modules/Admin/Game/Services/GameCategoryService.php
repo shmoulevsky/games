@@ -32,7 +32,7 @@ class GameCategoryService extends BaseTranslationService
             $category->parent_id = $dto->parentId ?? null;
             $category->save();
 
-            $result = GameCategory::withDepth()->find($dto->id);
+            $result = GameCategory::withDepth()->find($category->id);
             $depth = $result->depth;
             $category->depth = $depth;
             $category->save();

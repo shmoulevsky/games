@@ -996,6 +996,11 @@ var DataService = /*#__PURE__*/function () {
         }
       });
     }
+  }, {
+    key: "get",
+    value: function get(url) {
+      return _axios__WEBPACK_IMPORTED_MODULE_0__["default"].get(url);
+    }
   }]);
   return DataService;
 }();

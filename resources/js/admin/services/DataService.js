@@ -24,6 +24,9 @@ class DataService {
         params: {id}
     });
   }
+  get(url) {
+    return axiosInstance.get(url);
+  }
 }
 
 export default new DataService();

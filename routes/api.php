@@ -3,6 +3,7 @@
 use App\Http\Controllers\V1\Admin\AppController;
 use App\Http\Controllers\V1\Admin\GameCategoryController;
 use App\Http\Controllers\V1\Admin\GameController;
+use App\Http\Controllers\V1\Admin\SettingsController;
 use App\Http\Controllers\V1\Admin\UserController;
 use App\Http\Controllers\V1\Pub\User\AuthController;
 use App\Http\Controllers\V1\Pub\User\RegisterController;
@@ -33,6 +34,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['jwt.auth' , 'panel']], func
     Route::resource('games', GameController::class);
     Route::get('game-categories/select', [GameCategoryController::class, 'select']);
     Route::resource('game-categories', GameCategoryController::class);
+
+    Route::get('settings/{key}', [SettingsController::class, 'show']);
+    Route::post('settings/key/{key}', [SettingsController::class, 'updateByKey']);
+
 });
 
 Route::get('app', [\App\Http\Controllers\V1\Pub\App\AppController::class, 'index']);

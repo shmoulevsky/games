@@ -118,6 +118,25 @@
                             </li>
                         </ul>
                     </li>
+                    <li
+                        class="sidebar-item  has-sub">
+                        <a href="#" class='sidebar-link'>
+                            <i class="bi bi-menu-app-fill"></i>
+                            <span>{{ $t('Menu') }}</span>
+                        </a>
+                        <ul class="submenu ">
+                            <li class="submenu-item ">
+                                <router-link to="/admin/menu/top_menu" >
+                                    {{ $t('Top') }}
+                                </router-link>
+                            </li>
+                            <li class="submenu-item ">
+                                <router-link to="/admin/menu/side_menu" >
+                                    {{ $t('Side') }}
+                                </router-link>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>

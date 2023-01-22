@@ -202,6 +202,8 @@ export default {
         prepareItem(){
 
             this.id = this.$route.params.id;
+            this.is_copy = this.$route.params.is_copy;
+
             let translations = [];
 
             DataService.url = this.url;
