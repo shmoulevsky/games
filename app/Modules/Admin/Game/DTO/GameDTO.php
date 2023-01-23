@@ -8,6 +8,7 @@ class GameDTO
         public ?int $id,
         public ?string $game,
         public ?string $thumb,
+        public ?int $categoryId,
         public ?array $translations,
         public ?int $countryId,
         public ?int $languageId,

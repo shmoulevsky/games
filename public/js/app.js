@@ -30569,7 +30569,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.game[data-v-ed6a934e]{\n        width: 800px;\n        margin: 0px auto;\n        margin-left: 245px;\n}\n.rules[data-v-ed6a934e]{\n        line-height: 24px;\n        margin: 24px 0px;\n}\n.back[data-v-ed6a934e]{\n        color: #111;\n}\n.info[data-v-ed6a934e]{\n        margin: 24px 0px;\n        font-size: 14px;\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.game[data-v-ed6a934e]{\n        width: 800px;\n        margin: 0px auto;\n        margin-left: 245px;\n}\n.game-canvas[data-v-ed6a934e]{\n        border: 1px solid #ccc;\n}\n.rules[data-v-ed6a934e]{\n        line-height: 24px;\n        margin: 24px 0px;\n}\n.back[data-v-ed6a934e]{\n        color: #111;\n}\n.info[data-v-ed6a934e]{\n        margin: 24px 0px;\n        font-size: 14px;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

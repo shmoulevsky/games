@@ -74,6 +74,10 @@ export default {
         margin-left: 245px;
     }
 
+    .game-canvas{
+        border: 1px solid #ccc;
+    }
+
     .rules{
         line-height: 24px;
         margin: 24px 0px;

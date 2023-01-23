@@ -52,6 +52,7 @@ class GameController
             null,
             $request->game,
             $request->thumb,
+            $request->category_id,
             $request->translations,
             CountryService::getCurrent(),
             LanguageService::getCurrent()
@@ -72,6 +73,7 @@ class GameController
             $request->id,
             $request->game,
             $request->thumb,
+            $request->category_id,
             $request->translations,
             CountryService::getCurrent(),
             LanguageService::getCurrent()

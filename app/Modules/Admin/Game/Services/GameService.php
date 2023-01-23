@@ -26,7 +26,7 @@ class GameService extends BaseTranslationService
 
             $game->game = $dto->game;
             $game->thumb = $dto->thumb ?? null;
-            $game->category_id = $dto->category_id ?? null;
+            $game->category_id = $dto->categoryId ?? null;
             $game->save();
 
             $this->storeTranslations($dto->translations, $game);
