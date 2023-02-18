@@ -36,6 +36,7 @@
                                :href="'#tab-' + key"
                                role="tab">{{language.name}}
                             </a>
+                            <a data-bs-toggle="modal" data-bs-target="#translate" style="margin-left: 10px" class="btn btn-outline-primary"><i class="bi bi-pen-fill"></i></a>
                         </div>
                         <div class="tab-content text-justify">
                             <div v-for="(language, key) in languages"
@@ -142,6 +143,11 @@
             <!-- /.card-footer -->
         </form>
     </div>
+    <translate-form-fields
+        :languages="this.languages"
+        :translations="this.item.translations"
+        :fields="['title','description','seo_title','seo_description','seo_keywords','seo_url', 'rules']"
+    />
 </template>
 <script>
 
@@ -158,11 +164,15 @@ import FileInputImage from "../../Components/Form/Elements/FileInputImage.vue";
 import FileInputDocument from "../../Components/Form/Elements/FileInputDocument.vue";
 import SelectList from "../../Components/Form/Elements/SelectList.vue";
 import SuccessText from "../../Components/Form/SuccessText.vue";
+import Modal from "../../Components/Modal.vue";
+import TranslateFormFields from "../../Components/Form/TranslateFormFields.vue";
 
 
 export default {
     name: "Edit",
     components: {
+        TranslateFormFields,
+        Modal,
         SuccessText,
         SelectList, FileInputDocument, FileInputImage, ErrorText, TextArea, TextInput, Tab, LangTab},
     data() {
@@ -179,7 +189,7 @@ export default {
                 title : '',
                 translations : []
             },
-            categories : []
+            categories : [],
         };
     },
     computed: {
@@ -216,8 +226,6 @@ export default {
             this.id = this.$route.params.id;
             let translations = [];
 
-            DataService.url = this.url;
-
 
             for(let key in this.languages){
                 translations[this.languages[key].id] = this.getEmptyTranslation();
@@ -226,8 +234,14 @@ export default {
             this.item.translations = translations;
             this.$store.dispatch('setTitle', 'Add');
 
+            DataService.url = 'game-categories/select';
+            DataService.getList().then((response) => {
+                this.categories = response.data.data ?? [];
+            });
+
             if(!this.id) return;
 
+            DataService.url = this.url;
             DataService.getById(this.id).then(
                 (response) => {
                     this.item = response.data.data ?? [];
@@ -240,11 +254,6 @@ export default {
                     }
                 }
             );
-
-            DataService.url = 'game-categories/select';
-            DataService.getList().then((response) => {
-                this.categories = response.data.data ?? [];
-            });
 
         },
         getEmptyTranslation(){

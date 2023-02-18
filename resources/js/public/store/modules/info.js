@@ -3,18 +3,14 @@ import {loadLanguageAsync} from "laravel-vue-i18n";
 
 export default{
     actions :{
-        async getInfo(ctx){
-            AppInfoService.getInfo().then(response => {
-                let info = response.data;
-                ctx.commit('setInfo', info);
-            })
-
+        setInfo(ctx, info){
+            ctx.commit('setInfo', info);
         },
         setLanguage(ctx, language){
             ctx.commit('setLanguage', language);
             localStorage.setItem('language', language);
-            //let current = state.getLanguages.filter(item => (parseInt(item.id) === parseInt(language)));
-            //loadLanguageAsync(current[0].code);
+            let current = ctx.getters.getLanguages.filter(item => (parseInt(item.id) === parseInt(language)));
+            loadLanguageAsync(current[0].code);
         }
     },
     mutations :{

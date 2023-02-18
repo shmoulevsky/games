@@ -15,7 +15,7 @@ class GameRepository extends BaseRepository
         string $column = 'id',
         string $dir = 'desc',
         array $filter = [],
-        int $count = 10
+        int $count = 100
     )
     {
         $builder = $this->model

@@ -36,6 +36,7 @@
                                :href="'#tab-' + key"
                                role="tab">{{language.name}}
                             </a>
+                            <a data-bs-toggle="modal" data-bs-target="#translate" style="margin-left: 10px" class="btn btn-outline-primary"><i class="bi bi-pen-fill"></i></a>
                         </div>
                         <div class="tab-content text-justify">
                             <div v-for="(language, key) in languages"
@@ -142,6 +143,11 @@
             <!-- /.card-footer -->
         </form>
     </div>
+    <translate-form-fields
+        :languages="this.languages"
+        :translations="this.item.translations"
+        :fields="['title','description','seo_title','seo_description','seo_keywords','seo_url']"
+    />
 </template>
 <script>
 
@@ -158,11 +164,13 @@ import FileInputImage from "../../Components/Form/Elements/FileInputImage.vue";
 import FileInputDocument from "../../Components/Form/Elements/FileInputDocument.vue";
 import SelectList from "../../Components/Form/Elements/SelectList.vue";
 import SuccessText from "../../Components/Form/SuccessText.vue";
+import TranslateFormFields from "../../Components/Form/TranslateFormFields.vue";
 
 
 export default {
     name: "Edit",
     components: {
+        TranslateFormFields,
         SuccessText,
         SelectList, FileInputDocument, FileInputImage, ErrorText, TextArea, TextInput, Tab, LangTab},
     data() {

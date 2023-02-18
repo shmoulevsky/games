@@ -1016,6 +1016,11 @@ var DataService = /*#__PURE__*/function () {
     value: function get(url) {
       return _axios__WEBPACK_IMPORTED_MODULE_0__["default"].get(url);
     }
+  }, {
+    key: "post",
+    value: function post(url, data) {
+      return _axios__WEBPACK_IMPORTED_MODULE_0__["default"].post(url, data);
+    }
   }]);
   return DataService;
 }();
@@ -1031,12 +1036,27 @@ var DataService = /*#__PURE__*/function () {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "camelize": () => (/* binding */ camelize)
+/* harmony export */   "camelize": () => (/* binding */ camelize),
+/* harmony export */   "readUrlHash": () => (/* binding */ readUrlHash)
 /* harmony export */ });
 function camelize(str) {
   return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
     return index === 0 ? word.toLowerCase() : word.toUpperCase();
   }).replace(/\s+/g, '');
+}
+function readUrlHash() {
+  var result = {};
+  var hashParam = window.location.hash.substring(1);
+  var params = hashParam.split("&");
+  for (var index in params) {
+    var paramSet = params[index].split("=");
+    if (typeof paramSet[1] !== "undefined") {
+      result[paramSet[0]] = decodeURIComponent(paramSet[1]);
+    } else {
+      result[paramSet[0]] = "";
+    }
+  }
+  return result;
 }
 
 /***/ }),

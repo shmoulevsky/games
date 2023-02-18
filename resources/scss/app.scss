@@ -73,3 +73,23 @@ header{
     display: inline-block;
     padding: 10px 40px;
 }
+
+.btn.main{
+    padding: 5px 25px;
+    background: #6E41E2;
+    border-radius: 10px;
+    color:#fff;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+}
+
+body .btn.main:hover{
+    background-color: #7a59dc;
+    color: #fff;
+}
+
+.btn.main:active{
+    border: 0px;
+}

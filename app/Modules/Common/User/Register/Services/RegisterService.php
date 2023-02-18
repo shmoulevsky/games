@@ -37,7 +37,7 @@ class RegisterService
         $user->name = $dto->name;
         $user->lastname = $dto->lastname;
         $user->email = $dto->email;
-        $user->phone = $dto->phone;
+        $user->phone = $dto->phone ?? null;
 
         $user->password = $this->hashService->generatePasswordHash($dto->password);
         $user->hash = $this->hashService->generateHash();
@@ -72,6 +72,15 @@ class RegisterService
         $user->save();
 
         return new AuthResultDTO($user, '', []);
+    }
+
+    public function verify(?string $hash)
+    {
+        $user = User::where('hash', $hash)->first();
+        $user->email_verified_at = Carbon::now();
+        $user->save();
+
+        return $user;
     }
 
 }

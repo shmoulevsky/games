@@ -7,6 +7,15 @@ class AuthService {
     login(form) {
         return axiosInstance.post('/login', form);
     }
+    register(form) {
+        return axiosInstance.post('/register', form);
+    }
+    verify(hash) {
+        return axiosInstance.get('/register/email/verify/' + hash);
+    }
+    finish(form) {
+        return axiosInstance.post('/register/finish', form);
+    }
 }
 
 export default new AuthService();

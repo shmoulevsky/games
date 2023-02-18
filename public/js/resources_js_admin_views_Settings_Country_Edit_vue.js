@@ -1001,6 +1001,11 @@ var DataService = /*#__PURE__*/function () {
     value: function get(url) {
       return _axios__WEBPACK_IMPORTED_MODULE_0__["default"].get(url);
     }
+  }, {
+    key: "post",
+    value: function post(url, data) {
+      return _axios__WEBPACK_IMPORTED_MODULE_0__["default"].post(url, data);
+    }
   }]);
   return DataService;
 }();

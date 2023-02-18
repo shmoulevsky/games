@@ -2,8 +2,9 @@ import Home from "../views/Home";
 import Login from "../views/User/Login";
 import Register from "../views/User/Register";
 
-import ComponentFactory from "../views/Universal/ComponentFactory";
 import RestorePassword from "../views/User/RestorePassword";
+import Inner from "../views/Inner.vue";
+import OAuth from "../views/User/OAuth.vue";
 
 const routes = [
     {
@@ -22,13 +23,23 @@ const routes = [
         component: RestorePassword,
     },
     {
+        path: '/confirm/:hash',
+        name: 'ConfirmRegister',
+        component: Inner,
+    },
+    {
+        path: '/oauth/:type',
+        name: 'oAuthUser',
+        component: OAuth,
+    },
+    {
         path: '/',
         name: 'home',
         component: Home,
     },
     {
         path: '/:catchAll(.*)',
-        component: ComponentFactory,
+        component: Inner,
     }
 ];
 

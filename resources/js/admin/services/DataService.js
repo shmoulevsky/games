@@ -27,6 +27,10 @@ class DataService {
   get(url) {
     return axiosInstance.get(url);
   }
+
+    post(url, data) {
+        return axiosInstance.post(url, data);
+    }
 }
 
 export default new DataService();

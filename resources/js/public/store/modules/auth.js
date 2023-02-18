@@ -1,4 +1,3 @@
-import AppInfoService from '../../services/AppInfoService'
 import AuthService from "../../services/AuthService";
 import axiosInstance from "../../services/axios";
 import router from "../../router";
@@ -51,29 +50,61 @@ export default{
             router.push('/login');
 
         },
+        auth(ctx, payload){
+
+            localStorage.setItem('token', payload.access_token);
+            ctx.commit('setAuth', true);
+            ctx.commit('setToken', payload.access_token);
+            ctx.commit('setUser', payload.user);
+
+            axiosInstance.defaults.headers.common = { 'Authorization': 'Bearer '+ localStorage.getItem('token')};
+            window.location.href = '/';
+
+        },
         async login(ctx, payload) {
+            return new Promise((resolve, reject) => {
+                return AuthService.login(payload).then(response => {
 
-            AuthService.login(payload).then((response) => {
+                    localStorage.setItem('token', response.data.access_token);
 
-                localStorage.setItem('token', response.data.access_token);
-                ctx.commit('setAuth', true);
-                ctx.commit('setToken', response.data.access_token);
-                ctx.commit('setUser', response.data.user);
+                    ctx.commit('setAuth', true);
+                    ctx.commit('setToken', response.data.access_token);
+                    ctx.commit('setUser', response.data.user);
 
-                axiosInstance.defaults.headers.common = { 'Authorization': 'Bearer '+ localStorage.getItem('token')};
-                router.push('/')
+                    axiosInstance.defaults.headers.common = { 'Authorization': 'Bearer '+ localStorage.getItem('token')};
+                    window.location.href = '/personal';
 
-            }).catch((error) => {
+                    resolve(response);
 
-                if(error.response.status === 422) {
-                    let err = [];
-                    for(let key in error.response.data.errors){
-                        err.push(error.response.data.errors[key]);
+                }).catch(error => {
+
+                    let errors = [];
+                    if(error.response.status === 422) {
+                        for (const key in error.response.data.errors) {
+                            errors += error.response.data.errors[key]+'<br/>';
+                        }
+                        reject(errors)
                     }
-                    ctx.commit('setLoginErr', err)
-                }
-            });
+                });
+            })
+        },
+        async register(ctx, payload) {
+            return new Promise((resolve, reject) => {
+                return AuthService.register(payload).then(response => {
 
+                    resolve(response);
+
+                }).catch(error => {
+
+                    let errors = [];
+                    if(error.response.status === 422) {
+                        for (const key in error.response.data.errors) {
+                            errors += error.response.data.errors[key]+'<br/>';
+                        }
+                        reject(errors)
+                    }
+                });
+            })
         },
         async refreshToken(ctx) {
 

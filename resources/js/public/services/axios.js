@@ -6,7 +6,7 @@ let token = localStorage.getItem('token') ?? null;
 let language = store.getters.getLanguage ?? 1;
 
 let axiosInstance = axios.create({
-    baseURL: process.env.API_URL || 'http://games.ru/api',
+    baseURL: process.env.API_URL || '/api',
     headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",

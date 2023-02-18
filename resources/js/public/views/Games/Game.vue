@@ -47,8 +47,8 @@ export default {
             this.game = this.params.data.page ?? null;
 
             if (this.game.game) {
-                this.width = 800;
-                this.height = 600;
+                this.width = 1024;
+                this.height = 700;
                 this.language = localStorage.getItem('language');
                 this.script = this.game.game;
 
@@ -69,13 +69,13 @@ export default {
 
 <style scoped>
     .game{
-        width: 800px;
+        width: 1024px;
         margin: 0px auto;
-        margin-left: 245px;
+        margin-left: 100px;
     }
 
     .game-canvas{
-        border: 1px solid #ccc;
+       
     }
 
     .rules{

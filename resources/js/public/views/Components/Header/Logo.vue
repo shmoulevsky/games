@@ -1,5 +1,5 @@
 <template>
-    <a class="logo">Games.ru</a>
+    <a class="logo" href="#"></a>
 </template>
 
 <script>
@@ -9,9 +9,10 @@ export default {
 </script>
 
 <style scoped>
-    .logo{
-        font-size: 28px;
-        font-weight: bold;
-        color: #111;
-    }
+.logo{
+    display: block;
+    background-image: url('/assets/img/logo.svg');
+    width: 128px;
+    height: 50px;
+}
 </style>

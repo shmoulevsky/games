@@ -17,6 +17,6 @@ createApp(App)
     .use(VueAxios, axios)
     .use(store)
     .use(i18nVue, {
-        resolve: (lang) => import(`../../../lang/${lang}.json`)
+        resolve: (lang) => import(`../../../lang/public/${lang}.json`)
     })
     .mount("#app")

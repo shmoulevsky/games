@@ -12,6 +12,14 @@ var map = {
 		"./lang/en.json",
 		"lang_en_json"
 	],
+	"./public/en.json": [
+		"./lang/public/en.json",
+		"lang_public_en_json"
+	],
+	"./public/ru.json": [
+		"./lang/public/ru.json",
+		"lang_public_ru_json"
+	],
 	"./ru.json": [
 		"./lang/ru.json",
 		"lang_ru_json"
@@ -19335,7 +19343,7 @@ var token = (_localStorage$getItem = localStorage.getItem('token')) !== null && 
 var language = _store__WEBPACK_IMPORTED_MODULE_2__["default"].getters.getLanguage;
 console.log(language);
 var axiosInstance = axios__WEBPACK_IMPORTED_MODULE_0__["default"].create({
-  baseURL: process.env.API_URL || 'http://games.ru/api',
+  baseURL: process.env.API_URL || '/api',
   headers: {
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -51037,7 +51045,7 @@ const toFiniteNumber = (value, defaultValue) => {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"lang_en_json":1,"lang_ru_json":1,"resources_js_admin_views_Common_List_vue":1,"resources_js_admin_views_Users_Edit_vue":1,"resources_js_admin_views_Dashboard_Index_vue":1,"resources_js_admin_views_Content_Games_Edit_vue":1,"resources_js_admin_views_Filemanager_Filemanager_vue":1,"resources_js_admin_views_Content_GameCategories_Edit_vue":1,"resources_js_admin_views_Content_ArticleCategories_Edit_vue":1,"resources_js_admin_views_Content_Page_Edit_vue":1,"resources_js_admin_views_Content_Article_Edit_vue":1,"resources_js_admin_views_Content_PageCategories_Edit_vue":1,"resources_js_admin_views_Settings_Country_Edit_vue":1,"resources_js_admin_views_Settings_Language_Edit_vue":1,"resources_js_admin_views_Common_Menu_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_admin_views_Common_List_vue":1,"resources_js_admin_views_Users_Edit_vue":1,"resources_js_admin_views_Dashboard_Index_vue":1,"resources_js_admin_views_Content_Games_Edit_vue":1,"resources_js_admin_views_Filemanager_Filemanager_vue":1,"resources_js_admin_views_Content_GameCategories_Edit_vue":1,"resources_js_admin_views_Content_ArticleCategories_Edit_vue":1,"resources_js_admin_views_Content_Page_Edit_vue":1,"resources_js_admin_views_Content_Article_Edit_vue":1,"resources_js_admin_views_Content_PageCategories_Edit_vue":1,"resources_js_admin_views_Settings_Country_Edit_vue":1,"resources_js_admin_views_Settings_Language_Edit_vue":1,"resources_js_admin_views_Common_Menu_vue":1,"lang_en_json":1,"lang_public_en_json":1,"lang_public_ru_json":1,"lang_ru_json":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

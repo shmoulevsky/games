@@ -3,6 +3,7 @@
 namespace App\Modules\Common\Base\Services;
 
 
+use App\Modules\Common\Url\Services\UrlPathPageService;
 use App\Modules\Common\Url\Services\UrlPathService;
 use App\Modules\Common\Url\Services\UrlService;
 
@@ -19,6 +20,7 @@ abstract class BaseService
     public function __construct()
     {
         $this->urlPathService = app()->make(UrlPathService::class);
+        $this->urlPathPageService = app()->make(UrlPathPageService::class);
 
         if($this->modelClass) {
             $this->model = app()->make($this->modelClass);

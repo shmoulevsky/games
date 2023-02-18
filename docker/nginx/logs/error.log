@@ -10,3 +10,4 @@
 2023/01/10 09:55:47 [error] 7#7: *53 directory index of "/app/public/admin/" is forbidden, client: 172.19.0.1, server: games.ru, request: "GET /admin/ HTTP/1.1", host: "games.ru"
 2023/01/11 04:24:33 [error] 7#7: *26 directory index of "/app/public/admin/" is forbidden, client: 172.19.0.1, server: games.ru, request: "GET /admin/ HTTP/1.1", host: "games.ru"
 2023/01/12 07:48:16 [warn] 7#7: *1205 a client request body is buffered to a temporary file /var/cache/nginx/client_temp/0000000001, client: 172.19.0.1, server: games.ru, request: "POST /api/laravel-filemanager/upload HTTP/1.1", host: "games.ru", referrer: "http://games.ru/api/laravel-filemanager?type=Images"
+2023/02/10 08:17:03 [error] 7#7: *78 directory index of "/app/public/admin/" is forbidden, client: 172.19.0.1, server: games.ru, request: "GET /admin/ HTTP/1.1", host: "games.ru"
