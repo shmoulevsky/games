@@ -2,6 +2,7 @@
     <div class="col">
         <form class="reg-form">
             <h5 class="mb-5 title">{{$t('Registration')}}</h5>
+            <error-text :text="this.errors ?? ''"></error-text>
             <div>
                 <label>{{$t('Name')}}:</label>
                 <input v-model="name.value" type="text" class="form-control"  :placeholder="$t('Please enter name...')">
@@ -24,7 +25,15 @@
                 <a class="link" href="#!">{{$t('Have an account?')}}</a>
             </div>
             <div class="form-group mt-3">
-                <a href="#" @click="register()" class="btn main">{{$t('Sign up')}}</a>
+                <div class="row">
+                    <div class="col">
+                        <a href="#" @click="register()" class="btn main">{{$t('Sign up')}}</a>
+                    </div>
+                    <div class="col">
+                        <OAuthLinks/>
+                    </div>
+                </div>
+
             </div>
         </form>
     </div>
@@ -32,10 +41,11 @@
 
 <script>
 import ErrorText from "../../../admin/views/Components/Form/ErrorText.vue";
+import OAuthLinks from "./OAuthLinks.vue";
 
 export default {
     name: "Register",
-    components: {ErrorText},
+    components: {OAuthLinks, ErrorText},
     data() {
         return {
             errors : '',

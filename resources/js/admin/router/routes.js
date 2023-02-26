@@ -12,6 +12,8 @@ import pageCategories from "./Admin/PageCategories";
 import countries from "./Admin/Countries";
 import languages from "./Admin/Languages";
 import menu from "./Admin/Menu";
+import tags from "./Admin/Tags";
+import properties from "./Admin/Properties";
 
 export default [{
     path: '/admin',
@@ -25,6 +27,8 @@ export default [{
         gameCategories,
         pageCategories,
         pages,
+        tags,
+        properties,
         settings,
         countries,
         languages,

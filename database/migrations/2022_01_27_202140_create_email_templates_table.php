@@ -15,7 +15,7 @@ class CreateEmailTemplatesTable extends Migration
     {
         Schema::create('email_templates', function (Blueprint $table) {
             $table->id();
-            $table->string('language_code', 255)->index();
+            $table->integer('language_id')->index();
             $table->integer('email_id')->index();
             $table->text('template')->default(null);
             $table->string('title', 255)->default(null);

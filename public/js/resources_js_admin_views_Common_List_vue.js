@@ -428,6 +428,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _tables_languages__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./tables/languages */ "./resources/js/admin/config/tables/languages.js");
 /* harmony import */ var _tables_countries__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./tables/countries */ "./resources/js/admin/config/tables/countries.js");
 /* harmony import */ var _tables_user_subscriptions__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./tables/user-subscriptions */ "./resources/js/admin/config/tables/user-subscriptions.js");
+/* harmony import */ var _tables_tags__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./tables/tags */ "./resources/js/admin/config/tables/tags.js");
+/* harmony import */ var _tables_properties__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./tables/properties */ "./resources/js/admin/config/tables/properties.js");
+
+
 
 
 
@@ -448,7 +452,9 @@ var tableConfig = {
   articleCategories: _tables_article_categories__WEBPACK_IMPORTED_MODULE_5__["default"],
   pageCategories: _tables_page_categories__WEBPACK_IMPORTED_MODULE_6__["default"],
   languages: _tables_languages__WEBPACK_IMPORTED_MODULE_7__["default"],
-  countries: _tables_countries__WEBPACK_IMPORTED_MODULE_8__["default"]
+  countries: _tables_countries__WEBPACK_IMPORTED_MODULE_8__["default"],
+  tags: _tables_tags__WEBPACK_IMPORTED_MODULE_10__["default"],
+  properties: _tables_properties__WEBPACK_IMPORTED_MODULE_11__["default"]
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (tableConfig);
 
@@ -851,6 +857,83 @@ var pages = {
   edit: "admin.page.edit"
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (pages);
+
+/***/ }),
+
+/***/ "./resources/js/admin/config/tables/properties.js":
+/*!********************************************************!*\
+  !*** ./resources/js/admin/config/tables/properties.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! laravel-vue-i18n */ "./node_modules/laravel-vue-i18n/dist/index.js");
+
+var properties = {
+  title: (0,laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__.trans)('Properties list'),
+  per_page: 10,
+  items: {},
+  headers: [{
+    title: "ID",
+    code: "id",
+    dir: "desc",
+    is_sort: true
+  }, {
+    title: (0,laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__.trans)("Title"),
+    code: "title",
+    type: "url",
+    url: "url",
+    dir: "asc",
+    is_sort: true
+  }],
+  add: "admin.property.add",
+  edit: "admin.property.edit"
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (properties);
+
+/***/ }),
+
+/***/ "./resources/js/admin/config/tables/tags.js":
+/*!**************************************************!*\
+  !*** ./resources/js/admin/config/tables/tags.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! laravel-vue-i18n */ "./node_modules/laravel-vue-i18n/dist/index.js");
+
+var tags = {
+  title: (0,laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__.trans)('Tags list'),
+  per_page: 10,
+  items: {},
+  headers: [{
+    title: "ID",
+    code: "id",
+    dir: "desc",
+    is_sort: true
+  }, {
+    title: (0,laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__.trans)("Title"),
+    code: "title",
+    type: "url",
+    url: "url",
+    dir: "asc",
+    is_sort: true
+  }, {
+    title: (0,laravel_vue_i18n__WEBPACK_IMPORTED_MODULE_0__.trans)("Created at"),
+    code: "created_at",
+    dir: "asc",
+    is_sort: true
+  }],
+  add: "admin.tag.add",
+  edit: "admin.tag.edit"
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (tags);
 
 /***/ }),
 

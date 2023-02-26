@@ -16,6 +16,9 @@ class AuthService {
     finish(form) {
         return axiosInstance.post('/register/finish', form);
     }
+    quickRegister(form) {
+        return axiosInstance.post('/register/quick', form);
+    }
 }
 
 export default new AuthService();

@@ -92,6 +92,16 @@
                                     {{ $t('Articles') }}
                                 </router-link>
                             </li>
+                            <li class="submenu-item ">
+                                <router-link to="/admin/tags" class="submenu-item">
+                                    {{ $t('Tags') }}
+                                </router-link>
+                            </li>
+                            <li class="submenu-item ">
+                                <router-link to="/admin/properties" class="submenu-item">
+                                    {{ $t('Properties') }}
+                                </router-link>
+                            </li>
 
                         </ul>
                     </li>

@@ -106,6 +106,44 @@
                     </div>
                     <div
                         class="show tab-pane fade"
+                        id="tab-properties"
+                        role="tabpanel"
+                        aria-labelledby="tab-list-property">
+                        <div class="tab-content text-justify">
+                            <div class="list-group list-group-horizontal-sm mb-1 text-center col-4 mb-3" role="tablist">
+                                <a v-for="(language, key) in languages"
+                                   :key="'tabp-' + key"
+                                   :class="language.is_active ? 'active' : ''"
+                                   class="list-group-item list-group-item-action"
+                                   :id="'tabp-list-'+key"
+                                   data-bs-toggle="list"
+                                   :href="'#tabp-' + key"
+                                   role="tab">{{language.name}}
+                                </a>
+                                <a data-bs-toggle="modal" data-bs-target="#translate" style="margin-left: 10px" class="btn btn-outline-primary"><i class="bi bi-pen-fill"></i></a>
+                            </div>
+                            <div v-for="(language, key) in languages"
+                                 :class="language.is_active ? 'active' : ''"
+                                 class="show tab-pane fade"
+                                 :id="'tabp-'+key"
+                                 role="tabpanel"
+                                 :aria-labelledby="'tabp-list-'+key">
+                                <div class="row">
+                                    <div class="col">
+                                        <div v-for="property in fields.properties">
+                                            <text-input
+                                                :field="{title : property.translationsKeyed[language.id].title}"
+                                                @update:modelValue="property.translationsKeyed[language.id].value = $event"
+                                                :modelValue="property.translationsKeyed[language.id].value"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="show tab-pane fade"
                         id="tab-common"
                         role="tabpanel"
                         aria-labelledby="tab-list-common">
@@ -200,6 +238,7 @@ export default {
         tabs(){
             return {
                 translations : {title : this.$t("Main settings"), active : true},
+                properties : {title : this.$t("Properties"), active : false},
                 common : {title : this.$t("Common settings"), active : false},
             }
         },
@@ -216,6 +255,7 @@ export default {
                 seo_description: {title : this.$t("SEO description"), er : "", message : ""},
                 seo_keywords: {title : this.$t("SEO keywords"), er : "", message : ""},
                 seo_url: {title : this.$t("Url"), er : "", message : ""},
+                properties: [],
             }
 
         }
@@ -245,6 +285,8 @@ export default {
             DataService.getById(this.id).then(
                 (response) => {
                     this.item = response.data.data ?? [];
+                    this.fields.properties = response.data.data.properties;
+
                     this.$store.dispatch('setTitle', this.item.translations[this.language].title ?? 'New');
 
                     for(let key in this.languages) {

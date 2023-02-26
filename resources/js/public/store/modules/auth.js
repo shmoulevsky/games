@@ -22,6 +22,9 @@ export default{
         getUserName(state) {
             return state.user.name ?? '';
         },
+        getUserEmail(state) {
+            return state.user.email ?? '';
+        },
         getLoginErr(state) {
             return state.loginErr;
         },
@@ -47,7 +50,7 @@ export default{
         logout(ctx, payload) {
             ctx.commit('setAuth', false);
             ctx.commit('setToken', null);
-            router.push('/login');
+            router.push('/');
 
         },
         auth(ctx, payload){
@@ -88,7 +91,7 @@ export default{
                 });
             })
         },
-        async register(ctx, payload) {
+        register(ctx, payload) {
             return new Promise((resolve, reject) => {
                 return AuthService.register(payload).then(response => {
 
@@ -106,7 +109,25 @@ export default{
                 });
             })
         },
-        async refreshToken(ctx) {
+        quickRegister(ctx, payload) {
+            return new Promise((resolve, reject) => {
+                return AuthService.quickRegister(payload).then(response => {
+
+                    resolve(response);
+
+                }).catch(error => {
+
+                    let errors = [];
+                    if(error.response.status === 422) {
+                        for (const key in error.response.data.errors) {
+                            errors += error.response.data.errors[key]+'<br/>';
+                        }
+                        reject(errors)
+                    }
+                });
+            })
+        },
+        refreshToken(ctx) {
 
             let isAuth = this.state.getters.isAuth;
             if(isAuth) return;

@@ -43,7 +43,7 @@ class RegisterService
         $user->hash = $this->hashService->generateHash();
         $user->status = UserStatus::NOT_CONFIRMED;
         $user->country_id = $dto->countryId;
-        $user->language = $dto->language;
+        $user->language_id = $dto->language;
         $user->ref_id = $refUserId;
         $user->save();
 
@@ -68,7 +68,7 @@ class RegisterService
         $user->hash = $this->hashService->generateHash();
         $user->city_id = isset($city) ? $city->id : null;
         $user->country_id = $dto->countryId;
-        $user->language = $dto->language;
+        $user->language_id = $dto->language;
         $user->save();
 
         return new AuthResultDTO($user, '', []);

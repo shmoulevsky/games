@@ -34,10 +34,15 @@
                 <router-link class="link" :to="{path : '/forgot'}">{{$t('Forgot password?')}}</router-link>
             </div>
             <div class="form-group mt-3">
-                <button @click="login" type="button" class="btn main">{{$t('Sign in')}}</button>
-            </div>
-            <div class="form-group mt-3">
-                <a v-for="oauthItem in oauth" :href="oauthItem.link">{{oauthItem.name}}</a>
+                <div class="row">
+                    <div class="col">
+                        <button @click="login" type="button" class="btn main">{{$t('Sign in')}}</button>
+                    </div>
+                    <div class="col">
+                        <OAuthLinks/>
+                    </div>
+                </div>
+
             </div>
         </form>
     </div>
@@ -47,23 +52,18 @@
 <script>
 import ErrorText from "../../../admin/views/Components/Form/ErrorText.vue";
 import DataService from "../../services/DataService";
+import OAuthLinks from "./OAuthLinks.vue";
 
 export default {
     name: "Login",
-    components: {ErrorText},
+    components: {OAuthLinks, ErrorText},
     data() {
         return {
             errors : '',
-            oauth : [],
             isError : false,
             email : {value : "", er : false, message : "Please enter e-mail"},
             password : {value : "", er : false, message : "Please enter password"}
         }
-    },
-    mounted() {
-        DataService.post('oauth/link', {type : 'vk'}).then((response) => {
-            this.oauth = response.data.links;
-        })
     },
     methods :{
         login(){

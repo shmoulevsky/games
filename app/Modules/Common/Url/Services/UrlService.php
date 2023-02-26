@@ -17,7 +17,7 @@ class UrlService extends BaseService
 
     protected $modelClass = Url::class;
     protected $repositoryClass = UrlRepository::class;
-    private UrlPathService $urlPathService;
+    protected UrlPathService $urlPathService;
 
     public function __construct(UrlPathService $urlPathService)
     {

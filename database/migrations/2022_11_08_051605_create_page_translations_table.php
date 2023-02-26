@@ -27,6 +27,8 @@ return new class extends Migration
 
             $table->integer('sort');
             $table->boolean('is_active');
+            $table->bigInteger('views')->default(0);
+            $table->bigInteger('comments')->default(0);
 
             $table->bigInteger('language_id')->unsigned()->nullable();
             $table->foreign('language_id')

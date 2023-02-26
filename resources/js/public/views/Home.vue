@@ -28,18 +28,7 @@
                 </div>
                 <div class="col-5 offset-1">
                     <div class="form-wrap">
-                        <form>
-                            <span class="form-title">Быстрая регистрация</span>
-                            <div>
-                                <input placeholder="E-mail..." value="">
-                            </div>
-                            <div>
-                                <input placeholder="Пароль..." value="">
-                            </div>
-                            <div>
-                                <a class="btn main" href="">Регистрация</a>
-                            </div>
-                        </form>
+                        <quick-register></quick-register>
                     </div>
                 </div>
             </div>
@@ -210,10 +199,11 @@ import TopMenu from "./Components/Header/TopMenu.vue";
 import Logo from "./Components/Header/Logo.vue";
 import AuthMenu from "./Components/Header/AuthMenu.vue";
 import LanguageSelect from "./Components/Header/LanguageSelect.vue";
+import QuickRegister from "./User/QuickRegister.vue";
 
 export default {
     name: "Home",
-    components: {LanguageSelect, AuthMenu, Logo, TopMenu}
+    components: {QuickRegister, LanguageSelect, AuthMenu, Logo, TopMenu}
 }
 </script>
 
@@ -249,28 +239,6 @@ export default {
         background: #fff;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.04), 0px 14px 24px rgba(0, 0, 0, 0.2);
         border-radius: 30px;
-    }
-
-    .form-wrap .form-title{
-        font-family: 'Montserrat';
-        font-style: normal;
-        font-weight: 700;
-        font-size: 24px;
-        line-height: 29px;
-        display: block;
-        margin-bottom: 28px;
-    }
-
-    .form-wrap input{
-        border: 1px solid #C4C4C4;
-        border-radius: 10px;
-        margin-bottom: 24px;
-        height: 36px;
-        padding: 5px 10px;
-    }
-
-    .form-wrap .btn.main{
-        margin-top: 20px;
     }
 
     .top-sections{

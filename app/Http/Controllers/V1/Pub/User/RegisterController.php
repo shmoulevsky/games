@@ -7,6 +7,7 @@ use App\Http\Controllers\V1\Common\Controller;
 use App\Modules\Common\Country\Services\CountryService;
 use App\Modules\Common\Language\Services\LanguageService;
 use App\Modules\Common\User\Register\DTO\RegisterDTO;
+use App\Modules\Common\User\Register\Requests\RegisterQuickRequest;
 use App\Modules\Common\User\Register\Requests\RegisterRequest;
 use App\Modules\Common\User\Register\Services\RegisterService;
 use App\Modules\Mail\DTO\MailDTO;
@@ -60,11 +61,41 @@ class RegisterController extends Controller
         ];
     }
 
+    public function registerQuick(RegisterQuickRequest $request)
+    {
+
+        $registerDTO = new RegisterDTO(
+            null,
+            null,
+            null,
+            $request->email,
+            $request->password,
+            null,
+            CountryService::getCurrent(),
+            LanguageService::getCurrent()
+        );
+
+        $userDTO = $this->registerService->register($registerDTO);
+
+        $data = [
+            'name' => $userDTO->getUser()->name ?? '',
+            'link' => $request->getHttpHost().'/confirm/'.$userDTO->getUser()->hash,
+        ];
+
+        $manager = app()->make(EventManager::class);
+        $manager->handle('RegisterConfirm', $userDTO->getUser()->id, $data);
+
+        return [
+            'message' => 'Email send to ' . $userDTO->getUser()->email
+        ];
+    }
+
+
     public function verify(Request $request)
     {
         $user = $this->registerService->verify($request->hash);
         $token = auth()->login($user);
-        
+
         return response()->json([
             'user' => $user,
             'token' => $token,

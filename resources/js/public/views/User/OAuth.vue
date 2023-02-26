@@ -14,10 +14,23 @@ export default {
 
         }
 
-        let info = readUrlHash(window.location.hash);
-        let params = {
-            'access_token' : info.access_token,
-            'type' : this.$route.params.type
+        let type = this.$route.params.type;
+        let params = {};
+
+        if(type === 'vk'){
+            let info = readUrlHash(window.location.hash);
+            params = {
+                'access_token' : info.access_token,
+                'type' : type
+            }
+        }
+
+        if(type === 'google'){
+            let urlParams = new URLSearchParams(window.location.search);
+            params = {
+                'code' : urlParams.get('code'),
+                'type' : type
+            }
         }
 
         DataService.post('oauth/login', params).then((response)=>{

@@ -9,7 +9,7 @@ use App\Modules\Admin\Page\Repositories\PageRepository;
 use App\Modules\Common\Url\Models\Url;
 use App\Modules\Pub\Game\Repositories\GameCategoryRepository;
 use App\Modules\Pub\Game\Repositories\GameRepository;
-use App\Modules\Pub\Repositories\TagRepository;
+use App\Modules\Pub\Tag\Repositories\TagRepository;
 
 class RepositoryFactory
 {

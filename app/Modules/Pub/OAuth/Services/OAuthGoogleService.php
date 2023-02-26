@@ -19,15 +19,18 @@ class OAuthGoogleService
         $this->client = new Google_Client();
         $this->client->setClientId(config('oauth.google.client_id'));
         $this->client->setClientSecret(config('oauth.google.client_secret'));
-        $this->client->setRedirectUri(config('oauth.google.redirect'));
         $this->client->addScope('email');
         $this->client->addScope('profile');
     }
 
-    public function getLink() : array
+    public function getLink(string $domain) : array
     {
+        $uri = 'http://'.$domain.'/'.config('oauth.google.redirect');
+        $this->client->setRedirectUri($uri);
+
         return [
             'link' => $this->client->createAuthUrl(),
+            'src' => '/assets/img/icons/google-icon.png',
             'name' => OAuthType::GOOGLE,
         ];
     }
@@ -35,6 +38,7 @@ class OAuthGoogleService
     public function getUser() : ?OAuthResult
     {
         $token = $this->client->fetchAccessTokenWithAuthCode($this->token);
+        dd($token);
         $this->client->setAccessToken($token['access_token']);
         $oAuth = new Google_Service_Oauth2($this->client);
         $info = $oAuth->userinfo->get();

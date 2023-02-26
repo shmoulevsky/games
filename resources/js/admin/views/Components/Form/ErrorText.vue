@@ -1,7 +1,6 @@
 <template>
-    <div v-if="isShow === true" class="alert alert-danger alert-dismissible fade show" role="alert">
-        {{text}}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <div v-if="isShow === true" class="error-text">
+        <span v-html="text"></span>
     </div>
 </template>
 
@@ -18,5 +17,16 @@ export default {
 </script>
 
 <style scoped>
+
+.error-text{
+    color: red;
+    font-size: 14px;
+    padding: 15px;
+    border: 1px solid red;
+    display: inline-block;
+    border-radius: 10px;
+    min-width: 300px;
+    margin-bottom: 20px;
+}
 
 </style>

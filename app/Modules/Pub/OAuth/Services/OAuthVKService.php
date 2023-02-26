@@ -37,12 +37,12 @@ class OAuthVKService
         ]);
     }
 
-    public function getLink() : array
+    public function getLink(string $domain) : array
     {
 
         $params = [
             'client_id' => $this->clientId,
-            'redirect_uri'  => $this->redirectUri,
+            'redirect_uri'  => 'http://'.$domain.$this->redirectUri,
             'scopes'  => 12,
             'response_type' => 'token'
         ];
@@ -51,6 +51,7 @@ class OAuthVKService
 
         return [
             'link' => $link,
+            'src' => '/assets/img/icons/vk-icon.svg',
             'name' => OAuthType::VK,
         ];
     }

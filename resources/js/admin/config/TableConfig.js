@@ -8,6 +8,8 @@ import pageCategories from "./tables/page-categories";
 import languages from "./tables/languages";
 import countries from "./tables/countries";
 import userSubscriptions from "./tables/user-subscriptions";
+import tags from "./tables/tags";
+import properties from "./tables/properties";
 
 const tableConfig = {
 	users,
@@ -19,7 +21,9 @@ const tableConfig = {
     articleCategories,
     pageCategories,
     languages,
-    countries
+    countries,
+    tags,
+    properties
 };
 
 export default tableConfig;

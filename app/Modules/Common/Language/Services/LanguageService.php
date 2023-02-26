@@ -27,19 +27,6 @@ class LanguageService
 
     }
 
-    public static function prepareSettings($entitySettings, $entityDescriptions, $form = [])
-    {
-        $langs = Arr::pluck(Language::all('code'), 'code');
-        $descriptions = array_fill_keys($langs, $entityDescriptions);
-        $entitySettings->private = 1;
-
-        return [
-            'descriptions' => $descriptions,
-            'setting' => $entitySettings,
-            'form' => $form,
-        ];
-    }
-
     public static function getDefault()
     {
         return DB::table('countries')
@@ -47,50 +34,4 @@ class LanguageService
             ->where('id', CountryService::getCurrent())
             ->first('default_language')?->default_language;
     }
-
-    public static function getAvailable($countryId)
-    {
-        return DB::table('languages')
-            ->select('languages.code')
-            ->whereIn('id', function ($query) use ($countryId){
-                $query->from('countries_languages')
-                    ->select('language_id')
-                    ->where('country_id', $countryId);
-            })->get()->pluck('code')->toArray();
-    }
-
-    public static function getAvailableCount(int $countryId)
-    {
-        return DB::table('languages')
-            ->select('languages.code')
-            ->whereIn('id', function ($query) use ($countryId){
-                $query->from('countries_languages')
-                    ->select('language_id')
-                    ->where('country_id', $countryId);
-            })->count();
-    }
-
-    public static function storeFile()
-    {
-        $languageValueRepository = app()->make(LanguageValueRepository::class);
-        $languages = Language::where('status', 1)->get();
-        $path = [];
-
-        foreach ($languages as $language){
-            $languagesValues = $languageValueRepository->getByLanguageCode($language->code);
-            $values = new LanguageValueCollection($languagesValues);
-            Storage::disk('local')->put("public/languages/language-values-{$language->code}.json", $values->toJson());
-            $path[] = "/storage/languages/language-values-{$language->code}.json";
-        }
-
-        return $path;
-
-    }
-
-    public static function getCurrentFull()
-    {
-        $languageCode = self::getCurrent();
-        return Language::where('code', $languageCode)->first();
-    }
-
 }

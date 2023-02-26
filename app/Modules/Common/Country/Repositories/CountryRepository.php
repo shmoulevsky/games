@@ -17,6 +17,16 @@ class CountryRepository extends BaseRepository
             ->get();
     }
 
+    public function getOAuth(?int $countryId)
+    {
+        if(empty($countryId)) return  [];
+
+        return $this->model
+            ->select('oauth')
+            ->where('id', $countryId)
+            ->first()?->oauth;
+    }
+
 }
 
 

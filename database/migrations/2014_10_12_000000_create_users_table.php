@@ -33,7 +33,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->integer('group_id')->index()->default(0);
             $table->integer('access_panel')->default(0);
-            $table->string('language',5)->default('ru');
+            $table->integer('language_id')->default(1)->index();
             $table->bigInteger('ref_id')->index()->nullable();
             $table->bigInteger('country_id')->unsigned()->nullable();
             $table->foreign('country_id')

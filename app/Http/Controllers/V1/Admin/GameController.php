@@ -42,7 +42,7 @@ class GameController
 
     public function show($id)
     {
-        $game = $this->gameRepository->getById($id);
+        $game = $this->gameRepository->getFullById($id);
         return new GameResource($game);
     }
 

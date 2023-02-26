@@ -93,3 +93,28 @@ body .btn.main:hover{
 .btn.main:active{
     border: 0px;
 }
+
+input[type='text'], input[type='email'], input[type='password'], textarea{
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.subtitle{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    position: relative;
+    margin-bottom: 32px;
+}
+
+.subtitle:before{
+    content: '';
+    display: block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+
+}

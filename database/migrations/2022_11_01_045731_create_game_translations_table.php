@@ -27,6 +27,9 @@ return new class extends Migration
             $table->string('seo_url')->nullable();
 
             $table->integer('sort');
+            $table->bigInteger('views')->default(0);
+            $table->bigInteger('comments')->default(0);
+
             $table->boolean('is_active');
 
             $table->bigInteger('language_id')->unsigned()->nullable();
